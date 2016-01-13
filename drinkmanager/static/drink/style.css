@@ -1,3 +1,6 @@
+div {
+	display: block;
+}
 label {
 	display: inline;
 }
@@ -17,7 +20,22 @@ table,th,td {
 	border: 1px solid black;
 }
 
-img {
-	width: 125px;
-	height: 125px;
+.qr {
+	width: 150px;
+	height: 150px;
+}
+.photo {
+	width: 150px;
+	height: 150px;
+}
+.badge img,div {
+/*	
+	width: 165px;
+*/
+	display: block;
+	height: 40px;
+}
+
+div#content {
+	display: block;
 }

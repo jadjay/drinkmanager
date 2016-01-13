@@ -6,10 +6,6 @@
 {% endif %}
  - <a href={% url 'index' %}>Home</a>
 </p>
-<p> Pour flasher sur Androïd : <a href="https://play.google.com/store/apps/details?id=la.droid.qr&hl=fr">Téléchargez QR Droid Code Scanner</a></p>
-<p> Pour flasher sur iPhone : <a href="https://itunes.apple.com/fr/app/qr-reader-for-iphone/id368494609?mt=8">Téléchargez QR Reader for iPhone</a></p>
-
-
 {% comment "Optional note" %}
 <p>
 <a href='{{ basehost }}{% url 'registration_activate' "123abc" %}'>
@@ -20,4 +16,11 @@
 {{ baseurl }}{% url 'registration_activate' "123abc" %}</a>
 </p>
 http://{{ site.domain }}{% url 'registration_activate' "toto" %}
+<div class="badge">
+<a href="https://play.google.com/store/apps/details?id=me.scan.android.client&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/fr-play-badge.png" /></a>
+</div>
+<div class="badge">
+<a href="https://geo.itunes.apple.com/us/app/qr-reader-for-iphone/id368494609?mt=8" style="display:inline-block;overflow:hidden;background:url(http://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></a>
+</div>
+
 {% endcomment %}

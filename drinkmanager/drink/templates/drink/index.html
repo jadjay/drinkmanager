@@ -1,40 +1,12 @@
 {% extends "drink/skeleton.html" %}
-{% load staticfiles %}
-{% load qr_tags %}
 
 {% block header %}
 <h1>Home</h1>
 {% endblock %}
 {% block content %}
-{% for drink in drinks %}
-  <div class="block">
-          <a href="{% url 'drink-take' drink.name %}">
-    <table>
-      <tr>
-        <td>
-          <img src="{% static drink.photo.url %}"/>
-        </td>
-      </tr>
-      <tr>
-        <td>
-            {{ drink.name }}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          Solde : {{ drink.lastStock.quantity }}
-        </td>
-      </tr>
-      <tr>
-        <td>
-          {% url 'drink-take' drink.name as myurl %}
-          {% qr_from_text baseurl|add:myurl %}
-        </td>
-      </tr>
-    </table>
-          </a>
-  </div>
-{% endfor %}
+	{% for drink in drinks %}
+	        {% include "drink/product.html" %}
+	{% endfor %}
 {% endblock %}
 {% comment %}
   <div class="block">
