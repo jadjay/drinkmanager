@@ -1,0 +1,13 @@
+{% load staticfiles %}
+
+<head>
+</head>
+
+{% block title %}Index{% endblock %}
+
+{% block content %}
+
+{% endblock %}
+
+<a href="{% url 'registration_register' %}"> S'inscrire </a>
+<a href="{% url 'registration_register' %}"> S'inscrire </a>

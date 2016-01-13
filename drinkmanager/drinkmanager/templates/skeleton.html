@@ -1,0 +1,31 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>DrinkManager</title>
+    {% block css %}
+	<link rel="stylesheet" href="{% static 'drink/style.css' %}">
+    {% endblock %}
+    {% block js %}
+    {% endblock %}
+  </head>
+  <body>
+    <div id="container" >
+      <div id="header">
+        {% block header %}
+        {% include "drink/header.html" %}
+        {% endblock %}
+      </div>
+      <div id="content">
+        {% block content %}
+        <h3>Voici mon application : </h3>
+        {% endblock %}
+      </div>
+      <div id="footer">
+        {% block footer %}
+        {% include "drink/footer.html" %}
+        {% endblock %}
+      </div>
+    </div>
+  </body>
+</html>

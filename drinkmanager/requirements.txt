@@ -1,0 +1,4 @@
+django
+django-registration
+django-qrcode
+jsonfield

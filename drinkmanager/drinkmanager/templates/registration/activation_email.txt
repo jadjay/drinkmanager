@@ -1,0 +1,11 @@
+Bonjour,
+
+Pour finaliser l'activation de votre compte merci de cliquer ici :
+
+http://{{ site.domain }}{% url 'registration_activate' activation_key %}
+
+Ce code restera valable pendant {{ expiration_days }} jours.
+
+En vous remerciant,
+
+Le staff

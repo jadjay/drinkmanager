@@ -1,0 +1,11 @@
+{% extends "skeleton.html" %}
+{% load staticfiles %}
+
+{% block header %}
+<h1>Problème</h1>
+{% endblock %}
+{% block content %}
+<p> Quelque chose ne c'est pas passé comme prévu </p>
+<p> Code : {{ activation_key }} </p>
+{% endblock %}
+

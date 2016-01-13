@@ -1,0 +1,23 @@
+<p>
+{% if request.user.is_authenticated %}
+	{{ request.user.username }} - <a href="{% url 'django.contrib.auth.views.logout' %}">Se déconnecter</a>
+{% else %}
+	<a href="{% url 'django.contrib.auth.views.login' %}">Se connecter</a>/<a href="{% url 'registration_register' %}">S'enregistrer</a>
+{% endif %}
+ - <a href={% url 'index' %}>Home</a>
+</p>
+<p> Pour flasher sur Androïd : <a href="https://play.google.com/store/apps/details?id=la.droid.qr&hl=fr">Téléchargez QR Droid Code Scanner</a></p>
+<p> Pour flasher sur iPhone : <a href="https://itunes.apple.com/fr/app/qr-reader-for-iphone/id368494609?mt=8">Téléchargez QR Reader for iPhone</a></p>
+
+
+{% comment "Optional note" %}
+<p>
+<a href='{{ basehost }}{% url 'registration_activate' "123abc" %}'>
+{{ basehost }}{% url 'registration_activate' "123abc" %}</a>
+</p>
+<p>
+<a href='{{ baseurl }}{% url 'registration_activate' "123abc" %}'>
+{{ baseurl }}{% url 'registration_activate' "123abc" %}</a>
+</p>
+http://{{ site.domain }}{% url 'registration_activate' "toto" %}
+{% endcomment %}
