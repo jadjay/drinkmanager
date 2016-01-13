@@ -40,7 +40,7 @@ $ cat | sed 's/    //' > docker-compose.yml <<EOF
 EOF
 $ cat | sed 's/    //' > execution_file.sh <<EOF
       #!/bin/bash
-      cd GestionBoissonDj/drinkmanager/
+      cd drinkmanager/drinkmanager/
       python manage.py runserver 0.0.0.0:8001
 EOF
 $ docker-compose up
