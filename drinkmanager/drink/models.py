@@ -19,7 +19,10 @@ class Drink(models.Model):
     description = JSONField(null=True,blank=True,)
 #default="{}")
     def lastStock(self):
-        return self.stock_set.latest('date')
+        if self.stock_set.all().exists():
+            return self.stock_set.latest('date')
+        else:
+            return None
 
 class Stock(models.Model):
     def __str__(self):
