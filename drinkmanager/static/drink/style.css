@@ -9,13 +9,15 @@
 	width: 400px;
 */
 
-#footer {
+#header {
+	overflow: hidden;
 	height:170px;
+	text-align: center;
 }
-
 #content {
 	overflow: hidden;
 	height:auto;
+	text-align: center;
 }
 .product {
 	overflow: hidden;
@@ -38,9 +40,9 @@
 .badge {
 	overflow: hidden;
 	display: inline-block;
+	text-align: center;
 }
 .badge img {
-	text-align: center;
 	height: 40px;
 }
 

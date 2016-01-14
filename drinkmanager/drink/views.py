@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Drink, Stock, Consumption
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.template import RequestContext
 
 
@@ -20,12 +21,50 @@ def take(request, drink_name):
     if request.user.is_authenticated():
         mydrink = Drink.objects.get(name=drink_name)
         mystock=mydrink.lastStock()
-        mystock.quantity -= 1
-        mystock.save()
-        myconso=Consumption.objects.create(drink=mydrink,user=request.user)
+        if mystock:
+            mystock.quantity -= 1
+            mystock.save()
+            myconso=Consumption.objects.create(drink=mydrink,user=request.user)
         return show(request,drink_name)
     else:
         return redirect('auth_login')
+
+@login_required
+def maconso(request):
+    drinks = Drink.objects.all
+    consos = Consumption.objects.filter(user=request.user)
+    context = {
+        'drinks': drinks,
+        'consos': consos,
+    }
+    return render(request, 'drink/maconso.html', context)
+
+@login_required
+def conso(request):
+    drinks = Drink.objects.all()
+    consos = Consumption.objects.all()
+    users = User.objects.all()
+    byuser = []
+    for user in users:
+        byuser.append(
+            { 
+                'name': user.username,
+                'conso': consos.filter(user=user).count(),
+            }
+        )
+    bydrink = []
+    for drink in drinks:
+        bydrink.append(
+            { 
+                'name': drink.name,
+                'conso': consos.filter(drink=drink).count(),
+            }
+        )
+    context = {
+        'bydrink': bydrink,
+        'byuser': byuser,
+    }
+    return render(request, 'drink/conso.html', context)
 
 def show(request, drink_name):
     mydrink = Drink.objects.get(name=drink_name)

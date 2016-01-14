@@ -1,0 +1,19 @@
+{% extends "drink/skeleton.html" %}
+
+{% block header %}
+<h1>{{ request.user.name }}</h1>
+{% endblock %}
+{% block content %}
+  {% for conso in consos %}
+    <p>
+     {{ conso.date }}
+     {{ conso.user.username }}
+     {{ conso.drink.name }}
+    </p>
+  {% endfor %}
+    <p>
+      Total consommation : {{ consos.count }}
+    </p>
+
+{% endblock %}
+
