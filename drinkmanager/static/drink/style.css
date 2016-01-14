@@ -11,7 +11,7 @@
 
 #header {
 	overflow: hidden;
-	height:170px;
+	height:70px;
 	text-align: center;
 }
 #content {
@@ -46,6 +46,9 @@
 	height: 40px;
 }
 
+.badge.conso {
+	margin:0px 50px 0px 50px;
+}
 
 /*
 table {

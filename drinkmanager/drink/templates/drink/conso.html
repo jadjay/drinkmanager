@@ -1,0 +1,24 @@
+{% extends "drink/skeleton.html" %}
+
+{% block header %}
+<h1>Consommations</h1>
+{% endblock %}
+{% block content %}
+  <div class="badge conso">
+    <h2>par utilisateur</h2>
+    {% for user in byuser %}
+       <p>
+        {{ user.name }} : {{ user.conso }}
+      </p>
+    {% endfor %}
+  </div>
+  <div class="badge conso">
+    <h2>par boisson</h2>
+    {% for drink in bydrink %}
+      <p>
+        {{ drink.name }} : {{ drink.conso }}
+      </p>
+    {% endfor %}
+  </div>
+{% endblock %}
+
