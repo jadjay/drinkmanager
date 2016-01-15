@@ -1,3 +1,4 @@
+from datetime import datetime,timedelta
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from .models import Drink, Stock, Consumption
@@ -19,6 +20,16 @@ def index(request):
 @login_required
 def take(request, drink_name):
     if request.user.is_authenticated():
+        now,onehour = datetime.now(),timedelta(hours=1)
+        cookie = "%s" % (now).strftime("%c")
+        defaulttime = (now-onehour).strftime("%c")
+        getcookie = request.session.get(drink_name, default=defaulttime)
+        lasttaketime = datetime.strptime(getcookie,"%c")
+
+        if lasttaketime > now-onehour :
+            return tosoon(request,drink_name,lasttaketime)
+
+        request.session[drink_name] = cookie
         mydrink = Drink.objects.get(name=drink_name)
         mystock=mydrink.lastStock()
         if mystock:
@@ -69,7 +80,15 @@ def conso(request):
 def show(request, drink_name):
     mydrink = Drink.objects.get(name=drink_name)
     context = {
-        'drink': mydrink
+        'drink': mydrink,
     }
     return render(request, 'drink/show.html', context)
+
+def tosoon(request, drink_name, lasttaketime):
+    mydrink = Drink.objects.get(name=drink_name)
+    context = {
+        'drink': mydrink,
+        'lasttaketime': lasttaketime,
+    }
+    return render(request, 'drink/tosoon.html', context)
 

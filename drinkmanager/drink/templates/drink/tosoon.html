@@ -1,0 +1,11 @@
+{% extends "drink/skeleton.html" %}
+{% load staticfiles %}
+{% load qr_tags %}
+
+{% block header %}
+  <h1>{{ drink.name }}</h1>
+{% endblock %}
+{% block content %}
+<p>Vous avez pris un {{ drink.name }} il y a moins de 1 heure : {{ lasttaketime }}</p>
+<p>Patientez un peu</p>
+{% endblock %}

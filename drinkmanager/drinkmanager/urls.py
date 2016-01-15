@@ -23,5 +23,5 @@ urlpatterns = [
     url(r'^drink/', include('drink.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('registration.backends.hmac.urls')),
-    url(r'^accounts/login/', auth.views.login, name='login'),
+#    url(r'^accounts/login/', auth.views.login, name='login'),
 ]

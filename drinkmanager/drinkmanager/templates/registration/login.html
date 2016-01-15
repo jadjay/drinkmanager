@@ -5,7 +5,7 @@
 <h1>Login</h1>
 {% endblock %}
 {% block content %}
-<form action="{% url 'login' %}" method="POST">
+<form action="/accounts/login/?next={{ request.GET.next }}" method="POST">
     {% csrf_token %}
 <table>
 	{{ form }}
@@ -16,4 +16,5 @@
 
 {% comment %}
 <form action="" method="POST">
+<form action="/{% url 'login' %}" method="POST">
 {% endcomment %}
