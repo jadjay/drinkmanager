@@ -17,6 +17,11 @@ def index(request):
 #    else:
 #        return redirect('auth_login')
 
+def prints(request):
+     drinks = Drink.objects.all
+     context = { 'drinks': drinks }
+     return render(request, 'drink/print.html', context)
+
 @login_required
 def take(request, drink_name):
     if request.user.is_authenticated():
@@ -42,7 +47,6 @@ def take(request, drink_name):
 
 @login_required
 def maconso(request):
-<<<<<<< HEAD
     drinks = Drink.objects.all
     consos = Consumption.objects.filter(user=request.user)
     context = {
@@ -77,15 +81,6 @@ def conso(request):
         'byuser': byuser,
     }
     return render(request, 'drink/conso.html', context)
-=======
-     drinks = Drink.objects.all
-     consos = Consumption.objects.filter(user=request.user)
-     context = {
-         'drinks': drinks,
-         'consos': consos,
-     }
-     return render(request, 'drink/maconso.html', context)
->>>>>>> f0f6808df5c0cac1db060a71aadf71b7a5cb6121
 
 def show(request, drink_name):
     mydrink = Drink.objects.get(name=drink_name)
