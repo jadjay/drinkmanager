@@ -42,6 +42,7 @@ def take(request, drink_name):
 
 @login_required
 def maconso(request):
+<<<<<<< HEAD
     drinks = Drink.objects.all
     consos = Consumption.objects.filter(user=request.user)
     context = {
@@ -76,6 +77,15 @@ def conso(request):
         'byuser': byuser,
     }
     return render(request, 'drink/conso.html', context)
+=======
+     drinks = Drink.objects.all
+     consos = Consumption.objects.filter(user=request.user)
+     context = {
+         'drinks': drinks,
+         'consos': consos,
+     }
+     return render(request, 'drink/maconso.html', context)
+>>>>>>> f0f6808df5c0cac1db060a71aadf71b7a5cb6121
 
 def show(request, drink_name):
     mydrink = Drink.objects.get(name=drink_name)
