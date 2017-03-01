@@ -19,7 +19,10 @@ class Drink(models.Model):
     description = JSONField(null=True,blank=True,)
 #default="{}")
     def lastStock(self):
-        return self.stock_set.latest('date')
+        if self.stock_set.all().exists():
+            return self.stock_set.latest('date')
+        else:
+            return None
 
 class Stock(models.Model):
     def __str__(self):
@@ -36,3 +39,5 @@ class Consumption(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink)
+    def getuser(self):
+        return self.user

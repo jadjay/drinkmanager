@@ -20,12 +20,23 @@ def take(request, drink_name):
     if request.user.is_authenticated():
         mydrink = Drink.objects.get(name=drink_name)
         mystock=mydrink.lastStock()
-        mystock.quantity -= 1
-        mystock.save()
-        myconso=Consumption.objects.create(drink=mydrink,user=request.user)
+        if mystock:
+            mystock.quantity -= 1
+            mystock.save()
+            myconso=Consumption.objects.create(drink=mydrink,user=request.user)
         return show(request,drink_name)
     else:
         return redirect('auth_login')
+
+@login_required
+def maconso(request):
+     drinks = Drink.objects.all
+     consos = Consumption.objects.filter(user=request.user)
+     context = {
+         'drinks': drinks,
+         'consos': consos,
+     }
+     return render(request, 'drink/maconso.html', context)
 
 def show(request, drink_name):
     mydrink = Drink.objects.get(name=drink_name)
