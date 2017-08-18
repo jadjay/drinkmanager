@@ -35,6 +35,15 @@ def take(request, drink_name):
             return tosoon(request,drink_name,lasttaketime)
 
         request.session[drink_name] = cookie
+
+        drink = Drink.objects.get(name=drink_name)
+        context = { 'drink': drink }
+        return render(request, 'drink/sure.html', context)
+    else:
+        return redirect('auth_login')
+
+@login_required
+def taken(request, drink_name):
         mydrink = Drink.objects.get(name=drink_name)
         mystock = mydrink.lastStock()
         if mystock:
@@ -42,8 +51,6 @@ def take(request, drink_name):
             mystock.save()
             myconso=Consumption.objects.create(drink=mydrink,user=request.user)
         return show(request,drink_name)
-    else:
-        return redirect('auth_login')
 
 @login_required
 def maconso(request):
@@ -81,6 +88,16 @@ def conso(request):
         'byuser': byuser,
     }
     return render(request, 'drink/conso.html', context)
+
+@login_required
+def stock(request, drink_name):
+    drink = Drink.objects.filter(name=drink_name)
+    consos = Consumption.objects.filter(drink=drink)
+    context = {
+        'drinks': drink,
+        'consos': consos,
+    }
+    return render(request, 'drink/stock.html', context)
 
 def show(request, drink_name):
     mydrink = Drink.objects.get(name=drink_name)

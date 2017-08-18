@@ -2,18 +2,23 @@
 {% load qr_tags %}
 <div class="product">
 <p>
-          <a href="{% url 'drink-take' drink.name %}">
+          <a href="{% url 'drink-show' drink.name %}">
           <img class="photo" src="{% static drink.photo.url %}"/>
           </a>
 </p>
 <p>
-          <a href="{% url 'drink-take' drink.name %}">
+          <a href="{% url 'drink-show' drink.name %}">
             {{ drink.name }}
           </a>
 </p>
 <p>
-          <a href="{% url 'drink-take' drink.name %}">
+          <a href="{% url 'drink-stock' drink.name %}">
           Solde : {{ drink.lastStock.quantity }}
+          </a>
+</p>
+<p>
+          <a href="{% url 'drink-take' drink.name %}">
+          Take
           </a>
 </p>
 <p>

@@ -1,0 +1,12 @@
+{% extends "drink/skeleton.html" %}
+
+{% load staticfiles %}
+{% load qr_tags %}
+{% block header %}
+  <h1>{{ drink.name }}</h1>
+{% endblock %}
+{% block content %}
+        {% include "drink/choice.html" %}
+{% endblock %}
+{% comment %}
+{% endcomment %}

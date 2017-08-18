@@ -1,0 +1,14 @@
+{% load staticfiles %}
+{% load qr_tags %}
+<div>
+<div>
+          <a href="{% url 'drink-taken' drink.name %}">
+          Confirmer le Take ?
+          </a>
+</div>
+<div>
+          <a href="{% url 'drink-show' drink.name %}">
+          Non
+          </a>
+</div>
+</div>
