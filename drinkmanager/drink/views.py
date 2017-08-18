@@ -36,7 +36,7 @@ def take(request, drink_name):
 
         request.session[drink_name] = cookie
         mydrink = Drink.objects.get(name=drink_name)
-        mystock=mydrink.lastStock()
+        mystock = mydrink.lastStock()
         if mystock:
             mystock.quantity -= 1
             mystock.save()

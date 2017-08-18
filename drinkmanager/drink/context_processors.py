@@ -11,5 +11,7 @@ def squelette(request):
         'baseurl': baseurl,
         'basehost': basehost,
         'completeurl': completeurl,
+		'qrdroidurl': qrdroidurl, 
+		'qrreaderurl': qrreaderurl,
     }
     return context

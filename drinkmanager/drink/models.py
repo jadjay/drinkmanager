@@ -1,23 +1,23 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.files import File
 
 # Create your models here.
 from django.contrib.auth.models import User
 # Create your models here.
 from jsonfield import JSONField
+import urllib2
+#import simplejson
+import cStringIO
 
-#class Customer(models.Model):
-#    user = models.OneToOneField(User, on_delete=models.CASCADE)
-#    
 class Drink(models.Model):
     def __str__(self):
         return "%s" % self.name
 
     name = models.CharField(max_length=40)
-    photo = models.ImageField(upload_to='static/uploads/',default="uploads/canette_coca.jpeg")
+    photo = models.ImageField(upload_to='static/uploads/',default="static/uploads/canette.jpg")
     description = JSONField(null=True,blank=True,)
-#default="{}")
     def lastStock(self):
         if not self.stock_set.all():
             return None
