@@ -10,12 +10,9 @@ from django.template import RequestContext
 # Create your views here.
 
 def index(request):
-#    if request.user.is_authenticated():
      drinks = Drink.objects.all
      context = { 'drinks': drinks }
      return render(request, 'drink/index.html', context)
-#    else:
-#        return redirect('auth_login')
 
 def prints(request):
      drinks = Drink.objects.all
