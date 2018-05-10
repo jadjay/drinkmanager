@@ -3,4 +3,4 @@ django-registration
 django-qrcode
 jsonfield
 Pillow
-jpeg
+#jpeg
