@@ -28,7 +28,7 @@ sed 's/    //' > requirements.txt <<EOF
     jsonfield
     Pillow
 EOF
-git clone git@github.com:jadjay/drinkmanager.git
+git clone https://github.com/jadjay/drinkmanager.git
 sed 's/    //' > docker-compose.yml <<EOF
     web:
       build: .
