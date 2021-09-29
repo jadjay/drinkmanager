@@ -11,7 +11,7 @@ $ mv
 ```shell
 mkdir drinkmanager
 cd drinkmanager
-sed 's/    //' > Dockerfile <<EOF
+sed 's/^\s\+//' > Dockerfile <<EOF
     FROM python:2.7
     MAINTAINER javond@adista.fr
     ENV PYTHONUNBUFFERED 1
@@ -21,7 +21,7 @@ sed 's/    //' > Dockerfile <<EOF
     RUN pip install -r requirements.txt
     ADD . /code/
 EOF
-sed 's/    //' > requirements.txt <<EOF
+sed 's/^\s\+//' > requirements.txt <<EOF
     Django
     django-registration
     django-qrcode
@@ -29,7 +29,8 @@ sed 's/    //' > requirements.txt <<EOF
     Pillow
 EOF
 git clone https://github.com/jadjay/drinkmanager.git
-sed 's/    //' > docker-compose.yml <<EOF
+sed 's/^\s\+//' > requirements.txt <<EOF
+ > docker-compose.yml <<EOF
     web:
       build: .
       command: ./execution_file.sh
@@ -38,11 +39,20 @@ sed 's/    //' > docker-compose.yml <<EOF
       ports:
         - "8001:8001"
 EOF
-sed 's/    //' > execution_file.sh <<EOF
+sed 's/^\s\+//' > requirements.txt <<EOF
+ > execution_file.sh <<EOF
       #!/bin/bash
       cd drinkmanager/drinkmanager/
       python manage.py runserver 0.0.0.0:8001
 EOF
+ sed 's/^\s\+//' > execution_file.sh <<EOF
+      #!/bin/bash
+
+      cd drinkmanager/drinkmanager/
+      python manage.py runserver 0.0.0.0:8001
+EOF
+
+chmod a+x execution_file.sh
 ```
 Vous obtenez :
 ```shell
