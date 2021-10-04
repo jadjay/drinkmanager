@@ -1,12 +1,15 @@
 from __future__ import unicode_literals
 
+from django.contrib import admin
 from django.db import models
+
 from django.core.files import File
 
 # Create your models here.
 from django.contrib.auth.models import User
 # Create your models here.
 from jsonfield import JSONField
+
 
 
 try:
@@ -47,5 +50,12 @@ class Consumption(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
+
+#    @admin.display(description='Consommations')
     def getuser(self):
         return self.user
+
+##  class ConsumptionAdmin(admin.ModelAdmin):
+##      list_display = ('date','drink','user')
+##  #    list_filter = ('user__username', 'drink__name')
+##  #    search_fields = ('user__username','drink__name')
