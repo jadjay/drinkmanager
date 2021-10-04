@@ -32,7 +32,7 @@ LOGIN_REDIRECT_URL = '/' #Or whatever you wish
 # Application definition
 
 INSTALLED_APPS = [
-    'registration',
+    'django_registration',
     'qrcode',
     'drink',
     'django.contrib.admin',
@@ -43,19 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+    #'django.contrib.static',
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+#    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 
 ROOT_URLCONF = 'drinkmanager.urls'
+SITE_ID = 1
 
 TEMPLATES = [
     {
@@ -133,3 +135,9 @@ EMAIL_HOST_USER = ""
 EMAIL_HOST_PASSWORD = ""
 EMAIL_USE_TLS = True
 #EMAIL_USE_SSL
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+TENANT_APPS = [
+        'django.contrib.admin'
+        ]

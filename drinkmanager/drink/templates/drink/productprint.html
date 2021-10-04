@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 {% load qr_tags %}
 <div class="product">
 <p>
@@ -9,27 +9,6 @@
 </p>
 <p>
           {% url 'drink-take' drink.name as myurl %}
-          {% qr_from_text baseurl|add:myurl myclass="qr" %}
+          {% qr_from_text baseurl|add:myurl %}
 </p>
 </div>
-{% comment %}
-    <table>
-      <tr>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        </td>
-      </tr>
-    </table>
-{% endcomment %}
-

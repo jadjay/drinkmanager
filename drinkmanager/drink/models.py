@@ -7,16 +7,25 @@ from django.core.files import File
 from django.contrib.auth.models import User
 # Create your models here.
 from jsonfield import JSONField
-import urllib2
-#import simplejson
-import cStringIO
+
+
+try:
+    import urllib.request as urllib2
+except ImportError:
+    import urllib2
+
+
+try:
+    from io import BytesIO as cStringIO
+except ImportError:
+    import cStringIO
 
 class Drink(models.Model):
     def __str__(self):
         return "%s" % self.name
 
     name = models.CharField(max_length=40)
-    photo = models.ImageField(upload_to='static/uploads/',default="static/uploads/canette.jpg")
+    photo = models.ImageField(upload_to='uploads/',default="uploads/canette.jpg")
     description = JSONField(null=True,blank=True,)
     def lastStock(self):
         if not self.stock_set.all():
@@ -29,7 +38,7 @@ class Stock(models.Model):
 
     date = models.DateField()
     quantity = models.IntegerField()
-    drink = models.ForeignKey(Drink)
+    drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
 
 class Consumption(models.Model):
     def __str__(self):
@@ -37,6 +46,6 @@ class Consumption(models.Model):
 
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    drink = models.ForeignKey(Drink)
+    drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
     def getuser(self):
         return self.user

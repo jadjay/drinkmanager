@@ -1,13 +1,13 @@
 <p> {{ request.user.username }}
 {% if request.user.is_authenticated %}
-	<a href="{% url 'drink-maconso' %}">Ma conso</a> - <a href="{% url 'django.contrib.auth.views.logout' %}">Se déconnecter</a>
+	<a href="{% url 'drink-maconso' %}">Ma conso</a> - <a href="{% url 'logout' %}">Se déconnecter</a>
 	{% if request.user.is_superuser %}
 	- <a href="{% url 'admin:index' %}">Admin</a>
 	- <a href="{% url 'drink-conso' %}">Les Consos</a>
 	{% endif %}
 
 {% else %}
-	<a href="{% url 'django.contrib.auth.views.login' %}">Se connecter</a>/<a href="{% url 'registration_register' %}">S'enregistrer</a>
+	<a href="{% url 'login' %}">Se connecter</a>/<a href="{% url 'django_registration_register' %}">S'enregistrer</a>
 {% endif %}
  - <a href={% url 'index' %}>Home</a>
  - <a href={% url 'drink-print' %}>Page d'impression</a>
@@ -22,14 +22,14 @@
 </div>
 {% comment "Optional note" %}
 <p>
-<a href='{{ basehost }}{% url 'registration_activate' "123abc" %}'>
-{{ basehost }}{% url 'registration_activate' "123abc" %}</a>
+<a href='{{ basehost }}{% url 'django_registration_activate' "123abc" %}'>
+{{ basehost }}{% url 'django_registration_activate' "123abc" %}</a>
 </p>
 <p>
-<a href='{{ baseurl }}{% url 'registration_activate' "123abc" %}'>
-{{ baseurl }}{% url 'registration_activate' "123abc" %}</a>
+<a href='{{ baseurl }}{% url 'django_registration_activate' "123abc" %}'>
+{{ baseurl }}{% url 'django_registration_activate' "123abc" %}</a>
 </p>
-http://{{ site.domain }}{% url 'registration_activate' "toto" %}
+http://{{ site.domain }}{% url 'django_registration_activate' "toto" %}
 
 <p>QRDroid</p>
 <a href="https://play.google.com/store/apps/details?id=me.scan.android.client&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/fr-play-badge.png" /></a>

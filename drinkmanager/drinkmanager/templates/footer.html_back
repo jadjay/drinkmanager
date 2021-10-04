@@ -1,5 +1,5 @@
 {% comment "Optional note" %}
-<p><a href="{% url 'registration_register' %}"> S'inscrire </a> - <a href="{% url 'auth_login' %}"> Se connecter </a></p>
+<p><a href="{% url 'django_registration_register' %}"> S'inscrire </a> - <a href="{% url 'auth_login' %}"> Se connecter </a></p>
 {% if request.user.is_authenticated %}Welcome '{{ request.user.username }}'
 {% else %}<a href="{% url 'login' %}">Login</a>{% endif %}
 {% endcomment %}
