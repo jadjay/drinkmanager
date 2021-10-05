@@ -47,6 +47,7 @@ sed 's/^\s\+//' > execution_file.sh <<EOF
       export DJANGO_SUPERUSER_USERNAME="''"
       export DJANGO_SUPERUSER_EMAIL="''"
       export DJANGO_SECRETKEY="\"SECRETKEYTOGENERATE\""
+      export DJANGO_DEBUG=True
       export DJANGO_EMAIL_HOST="''"
       export DJANGO_EMAIL_PORT=589
       export DJANGO_EMAIL_HOST_USER="''"
