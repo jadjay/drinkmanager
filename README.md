@@ -8,6 +8,8 @@ $ mv
 
 ## Docker
 
+Copiez ce code et collez le dans un terminal d'un serveur Docker :
+
 ```shell
 mkdir drinkmanager
 cd drinkmanager
@@ -43,9 +45,9 @@ sed 's/^\s\+//' > execution_file.sh <<EOF
       #!/bin/bash
       
       ### VARIABLES A EDITER
-      export DJANGO_SUPERUSER_PASSWORD="''"
-      export DJANGO_SUPERUSER_USERNAME="''"
-      export DJANGO_SUPERUSER_EMAIL="''"
+      export DJANGO_SUPERUSER_PASSWORD="MONPASSWORDADMIN"
+      export DJANGO_SUPERUSER_USERNAME="MONUSERADMIN"
+      export DJANGO_SUPERUSER_EMAIL="MONMAIL@ADMINISTRAT.EU"
       export DJANGO_SECRETKEY="\"SECRETKEYTOGENERATE\""
       export DJANGO_DEBUG=True
       export DJANGO_EMAIL_HOST="''"
