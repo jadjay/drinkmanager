@@ -38,12 +38,6 @@ sed 's/^\s{4}//' > docker-compose.yml <<EOF
       ports:
         - "8001:8001"
 EOF
-sed 's/^\s\+//' > requirements.txt <<EOF
- > execution_file.sh <<EOF
-      #!/bin/bash
-      cd drinkmanager/drinkmanager/
-      python manage.py runserver 0.0.0.0:8001
-EOF
  sed 's/^\s\+//' > execution_file.sh <<EOF
       #!/bin/bash
 
