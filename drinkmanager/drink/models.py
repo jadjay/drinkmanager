@@ -24,34 +24,39 @@ except ImportError:
     import cStringIO
 
 class Drink(models.Model):
-    def __str__(self):
-        return "%s" % self.name
-
+    
     name = models.CharField(max_length=40)
     photo = models.ImageField(upload_to='uploads/',default="uploads/canette.jpg")
     description = JSONField(null=True,blank=True,)
+
+    def __str__(self):
+        return "%s" % self.name
+
     def lastStock(self):
         if not self.stock_set.all():
             return None
         return self.stock_set.latest('date')
 
 class Stock(models.Model):
-    def __str__(self):
-        return "%s %s %s" % (self.date.strftime("%F"),self.drink.name,self.quantity)
 
     date = models.DateField()
     quantity = models.IntegerField()
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
 
-class Consumption(models.Model):
     def __str__(self):
-        return "%s %s %s" % (self.date.strftime("%F|%H:%M:%S"),self.user.username,self.drink.name)
+        return "%s %s %s" % (self.date.strftime("%F"),self.drink.name,self.quantity)
+
+
+class Consumption(models.Model):
 
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     drink = models.ForeignKey(Drink, on_delete=models.CASCADE)
 
-#    @admin.display(description='Consommations')
+    
+    def __str__(self):
+        return "%s %s %s" % (self.date.strftime("%FT%T"),self.user.username,self.drink.name)
+
     def getuser(self):
         return self.user
 
