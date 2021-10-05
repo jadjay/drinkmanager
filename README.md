@@ -12,13 +12,14 @@ $ mv
 mkdir drinkmanager
 cd drinkmanager
 sed 's/^\s\+//' > Dockerfile <<EOF
-    FROM python:2.7
+    FROM python:3
     MAINTAINER javond@adista.fr
     ENV PYTHONUNBUFFERED 1
     RUN mkdir /code
     WORKDIR /code
-    ADD requirements.txt /code/
-    RUN pip install -r requirements.txt
+    RUN apt-get update
+    RUN apt-get install gettext-base
+    RUN pip3 install -r requirements.txt
     ADD . /code/
 EOF
 sed 's/^\s\+//' > requirements.txt <<EOF
@@ -29,8 +30,7 @@ sed 's/^\s\+//' > requirements.txt <<EOF
     Pillow
 EOF
 git clone https://github.com/jadjay/drinkmanager.git
-sed 's/^\s\+//' > requirements.txt <<EOF
- > docker-compose.yml <<EOF
+sed 's/^\s{4}//' > docker-compose.yml <<EOF
     web:
       build: .
       command: ./execution_file.sh
@@ -39,21 +39,39 @@ sed 's/^\s\+//' > requirements.txt <<EOF
       ports:
         - "8001:8001"
 EOF
-sed 's/^\s\+//' > requirements.txt <<EOF
- > execution_file.sh <<EOF
+sed 's/^\s\+//' > execution_file.sh <<EOF
       #!/bin/bash
-      cd drinkmanager/drinkmanager/
-      python manage.py runserver 0.0.0.0:8001
-EOF
- sed 's/^\s\+//' > execution_file.sh <<EOF
-      #!/bin/bash
+      
+      ### VARIABLES A EDITER
+      export DJANGO_SUPERUSER_PASSWORD="''"
+      export DJANGO_SUPERUSER_USERNAME="''"
+      export DJANGO_SUPERUSER_EMAIL="''"
+      export DJANGO_SECRETKEY="\"SECRETKEYTOGENERATE\""
+      export DJANGO_EMAIL_HOST="''"
+      export DJANGO_EMAIL_PORT=589
+      export DJANGO_EMAIL_HOST_USER="''"
+      export DJANGO_EMAIL_HOST_PASSWORD="''"
+      export DJANGO_EMAIL_USE_TLS=True
 
       cd drinkmanager/drinkmanager/
-      python manage.py runserver 0.0.0.0:8001
-EOF
 
+      python manage.py makemigration
+      python manage.py migrate
+
+      python manage.py createsuperuser --noinput
+
+      cat drinkmanager/default_settings.py | envsubst > drinkmanager/settings.py
+      cat drinkmanager/settings.py
+
+      python manage.py runserver 0.0.0.0:8001
+      
+EOF
 chmod a+x execution_file.sh
 ```
+
+⚠️ Modifiez le fichier execution_file.sh ⚠️
+
+
 Vous obtenez :
 ```shell
 └> ls -l
