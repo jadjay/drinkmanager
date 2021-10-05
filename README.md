@@ -56,13 +56,13 @@ sed 's/^\s\+//' > execution_file.sh <<EOF
 
       cd drinkmanager/drinkmanager/
 
+      cat drinkmanager/default_settings.py | envsubst > drinkmanager/settings.py
+      cat drinkmanager/settings.py
+
       python manage.py makemigration
       python manage.py migrate
 
       python manage.py createsuperuser --noinput
-
-      cat drinkmanager/default_settings.py | envsubst > drinkmanager/settings.py
-      cat drinkmanager/settings.py
 
       python manage.py runserver 0.0.0.0:8001
       
