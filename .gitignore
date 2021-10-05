@@ -55,6 +55,5 @@ docs/_build/
 # PyBuilder
 target/
 
-drinkmanager/drinkmanager/static/admin/
-drinkmanager/qrcode/
-uploads/
+drinkmanager/uploads/
+drinkmanager/static/admin
