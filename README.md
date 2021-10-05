@@ -18,7 +18,7 @@ sed 's/^\s\+//' > Dockerfile <<EOF
     RUN mkdir /code
     WORKDIR /code
     ADD requirements.txt /code/
-    RUN pip install -r requirements.txt
+    RUN pip3 install -r requirements.txt
     ADD . /code/
 EOF
 sed 's/^\s\+//' > requirements.txt <<EOF
@@ -42,7 +42,7 @@ EOF
       #!/bin/bash
 
       cd drinkmanager/drinkmanager/
-      python manage.py runserver 0.0.0.0:8001
+      python3 manage.py runserver 0.0.0.0:8001
 EOF
 
 chmod a+x execution_file.sh
