@@ -12,7 +12,7 @@ $ mv
 mkdir drinkmanager
 cd drinkmanager
 sed 's/^\s\+//' > Dockerfile <<EOF
-    FROM python:2.7
+    FROM python:3.8
     MAINTAINER javond@adista.fr
     ENV PYTHONUNBUFFERED 1
     RUN mkdir /code
@@ -29,8 +29,7 @@ sed 's/^\s\+//' > requirements.txt <<EOF
     Pillow
 EOF
 git clone https://github.com/jadjay/drinkmanager.git
-sed 's/^\s\+//' > requirements.txt <<EOF
- > docker-compose.yml <<EOF
+sed 's/^\s\+//' > docker-compose.yml <<EOF
     web:
       build: .
       command: ./execution_file.sh
