@@ -8,6 +8,8 @@ $ mv
 
 ## Docker
 
+### Installation, tests
+
 Copiez ce code et collez le dans un terminal d'un serveur Docker :
 
 ```shell
@@ -89,4 +91,16 @@ Il ne reste plus qu'à lancer :
 ```shell
 docker-compose up
 ```
+
+### Suppression
+
+Tapez ceci pour tout supprimer
+
+```shell
+docker-compose down
+docker rm drinkmanager_web_1 ; docker image rm drinkmanager_web ; docker image rm python:3 
+cd ../
+rm -rf drinkmanager
+```
+
 
