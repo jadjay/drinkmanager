@@ -10,6 +10,7 @@ django-qrcode = "*"
 jsonfield = "*"
 Pillow = "*"
 django = "*"
+ipython = "*"
 
 [dev-packages]
 
