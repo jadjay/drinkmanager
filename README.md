@@ -29,7 +29,7 @@ sed 's/^\s\+//' > requirements.txt <<EOF
     Pillow
 EOF
 git clone https://github.com/jadjay/drinkmanager.git
-sed 's/^\s\+//' > docker-compose.yml <<EOF
+sed 's/^\s{4}//' > docker-compose.yml <<EOF
     web:
       build: .
       command: ./execution_file.sh
