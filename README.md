@@ -72,18 +72,17 @@ EOF
 chmod a+x execution_file.sh
 ```
 
-⚠️ Modifiez le fichier execution_file.sh ⚠️
-
+⚠️ Modifiez le fichier ```execution_file.sh``` ⚠️
 
 Vous obtenez :
 ```shell
 └> ls -l
 total 0
--rw-r--r-- 1 jerome jerome  99 sept. 29 13:21 docker-compose.yml
--rw-r--r-- 1 jerome jerome 174 sept. 29 13:17 Dockerfile
-drwxr-xr-x 1 jerome jerome 512 sept. 29 13:21 drinkmanager
--rw-r--r-- 1 jerome jerome  88 sept. 29 13:21 execution_file.sh
--rw-r--r-- 1 jerome jerome  58 sept. 29 13:19 requirements.txt
+-rw-r--r-- 1 jerome jerome  197 sept. 21 13:37 docker-compose.yml
+-rw-r--r-- 1 jerome jerome  127 sept. 21 13:37 Dockerfile
+drwxr-xr-x 1 jerome jerome 4096 sept. 21 13:37 drinkmanager
+-rw-r--r-- 1 jerome jerome  761 sept. 21 13:37 execution_file.sh
+-rw-r--r-- 1 jerome jerome   58 sept. 21 13:37 requirements.txt
 ```
 
 Il ne reste plus qu'à lancer :
