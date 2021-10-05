@@ -22,7 +22,7 @@ sed 's/^\s\+//' > Dockerfile <<EOF
     RUN mkdir /code
     WORKDIR /code
     RUN apt-get update
-    RUN apt-get install gettext-base
+    RUN apt-get install gettext-base apt-utils
     RUN pip3 install -r requirements.txt
     ADD . /code/
 EOF
