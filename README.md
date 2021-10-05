@@ -18,13 +18,19 @@ cd drinkmanager
 sed 's/^\s\+//' > Dockerfile <<EOF
     FROM python:3
     MAINTAINER javond@adista.fr
+    
     ENV PYTHONUNBUFFERED 1
+    
     RUN mkdir /code
     WORKDIR /code
+    ADD . /code
+    
     RUN apt-get update
-    RUN apt-get install gettext-base apt-utils
+    RUN apt-get install apt-utils
+    RUN apt-get install gettext-base
+    
     RUN pip3 install -r requirements.txt
-    ADD . /code/
+    
 EOF
 sed 's/^\s\+//' > requirements.txt <<EOF
     Django
@@ -100,7 +106,5 @@ Tapez ceci pour tout supprimer
 docker-compose down
 docker rm drinkmanager_web_1 ; docker image rm drinkmanager_web ; docker image rm python:3 
 cd ../
-rm -rf drinkmanager
+sudo rm -rf drinkmanager
 ```
-
-
