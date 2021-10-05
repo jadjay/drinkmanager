@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = $DJANGO_SECRETKEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = $DJANGO_DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -129,12 +129,11 @@ STATICFILES_DIRS = [
 ]
 
 # Email
-EMAIL_HOST = "smtp.cheztoi.com"
-EMAIL_PORT = 589
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-EMAIL_USE_TLS = True
-#EMAIL_USE_SSL
+EMAIL_HOST = $DJANGO_EMAIL_HOST
+EMAIL_PORT = $DJANGO_EMAIL_PORT
+EMAIL_HOST_USER = $DJANGO_EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = $DJANGO_EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = $DJANGO_EMAIL_USE_TLS
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
