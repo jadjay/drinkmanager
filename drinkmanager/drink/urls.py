@@ -12,3 +12,6 @@ urlpatterns = [
     url(r'^show/(?P<drink_name>\w{2,})', views.show, name="drink-show"),
     url(r'^stock/(?P<drink_name>\w{2,})', views.stock, name="drink-stock"),
 ]
+
+handler404 = 'drink.views.handler404'
+handler500 = 'drink.views.handler500'
