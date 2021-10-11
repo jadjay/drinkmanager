@@ -25,3 +25,7 @@ urlpatterns = [
     url(r'^accounts/', include('registration.backends.hmac.urls')),
 #    url(r'^accounts/login/', auth.views.login, name='login'),
 ]
+
+
+handler404 = 'drink.views.handler404'
+handler500 = 'drink.views.handler500'

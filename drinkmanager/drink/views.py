@@ -1,10 +1,12 @@
 from datetime import datetime,timedelta
 from django.shortcuts import render, redirect
+from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from .models import Drink, Stock, Consumption
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.template import RequestContext
+
 
 
 # Create your views here.
@@ -113,4 +115,19 @@ def tosoon(request, drink_name, lasttaketime):
         'lasttaketime': lasttaketime,
     }
     return render(request, 'drink/tosoon.html', context)
+
+
+
+def handler404(request, *args, **argv):
+    response = render_to_response('drink/404.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 404
+    return response
+
+
+def handler500(request, *args, **argv):
+    response = render_to_response('drink/500.html', {},
+                                  context_instance=RequestContext(request))
+    response.status_code = 500
+    return response
 
