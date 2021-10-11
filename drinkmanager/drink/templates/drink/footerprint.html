@@ -2,12 +2,13 @@
 {% load qr_tags %}
 
 {% url 'index' as myurl %}
-<div>
-<p>Pour se connecter {{ baseurl|add:myurl }}
-</p>
+<div class='flash'>
+<p>Pour se connecter {{ baseurl|add:myurl }} : flashez ce tag
 {% qr_from_text baseurl|add:myurl myclass="qr" %}
-<p>Flasher ce tag
 </p>
+</div>
+<div>
+<p>--</p>
 </div>
 
 <div class="badge">

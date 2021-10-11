@@ -1,3 +1,10 @@
+p {
+	margin: 5px;
+}
+h1 {
+	margin: 5px;
+}
+
 #container {
 	display: block;
 	margin:0 auto;
@@ -11,7 +18,7 @@
 
 #header {
 	overflow: hidden;
-	height:70px;
+	height:50px;
 	text-align: center;
 }
 #content {
@@ -43,6 +50,22 @@
 	text-align: center;
 	vertical-align: middle;
 }
+.flash {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+.flash img {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+.flash p {
+	display: inline-block;
+	text-align: center;
+	vertical-align: middle;
+}
+
 .badge img {
 	height: 55px;
 }
