@@ -26,6 +26,7 @@ except ImportError:
 class Drink(models.Model):
     
     name = models.CharField(max_length=40)
+    ean13 = models.CharField(max_length=40,default="")
     photo = models.ImageField(upload_to='uploads/',default="uploads/canette.jpg")
     description = JSONField(null=True,blank=True,)
 
@@ -36,6 +37,11 @@ class Drink(models.Model):
         if not self.stock_set.all():
             return None
         return self.stock_set.latest('date')
+
+    def save(self, *args, **kwargs):
+        # do_something()
+        super().save(*args, **kwargs)  # Call the "real" save() method.
+        # do_something_else()
 
 class Stock(models.Model):
 
