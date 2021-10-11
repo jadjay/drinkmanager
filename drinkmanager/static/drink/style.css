@@ -41,13 +41,18 @@
 	overflow: hidden;
 	display: inline-block;
 	text-align: center;
+	vertical-align: middle;
 }
 .badge img {
-	height: 40px;
+	height: 55px;
+}
+
+.badge p {
+	margin:0px 10px 0px 10px;
 }
 
 .badge.conso {
-	margin:0px 50px 0px 50px;
+	margin:0px 10px 0px 10px;
 }
 
 /*
