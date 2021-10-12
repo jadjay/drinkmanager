@@ -50,6 +50,7 @@ class Drink(models.Model):
             #print(url)
             response = requests.get(url)
             product = response.json()
+
             drink_name = re.sub(r'\s+','_',product['product']['product_name_fr'])
             resultat = { 
                 "nom":          product['product']['product_name_fr'],
@@ -58,7 +59,7 @@ class Drink(models.Model):
                 "nutriscore": { 
                         "grade":        product['product']['nutriscore_grade'],
                         "data":         product['product']['nutriscore_data'],
-                        "image_url":    'https://static.openfoodfacts.org/images/misc/nutriscore-%s.svg' % product['product']['nutriscore_grade']
+                        "image_url":    'images/nutriscore-%s.svg' % product['product']['nutriscore_grade']
                 }
             }
             drink_image_url = product['product']['selected_images']['front']['display']['fr']
