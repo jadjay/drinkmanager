@@ -11,6 +11,7 @@ jsonfield = "*"
 Pillow = "*"
 django = "*"
 ipython = "*"
+requests = "*"
 
 [dev-packages]
 
