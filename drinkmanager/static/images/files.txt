@@ -1,0 +1,5 @@
+https://static.openfoodfacts.org/images/misc/nutriscore-a.svg
+https://static.openfoodfacts.org/images/misc/nutriscore-b.svg
+https://static.openfoodfacts.org/images/misc/nutriscore-c.svg
+https://static.openfoodfacts.org/images/misc/nutriscore-d.svg
+https://static.openfoodfacts.org/images/misc/nutriscore-e.svg
