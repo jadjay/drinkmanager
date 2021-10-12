@@ -1,7 +1,12 @@
 {% extends "drink/skeleton.html" %}
 
 {% block header %}
-  <h1>{{ drink.name }}</h1>
+<h1>{{ drink.description.nom }} {{ drink.description.quantite }}</h1>
+<p class="ingredient">
+{% for ing in drink.description.ingredient|dictsortreversed:"percent_estimate" %}
+	{{ ing.text }} {{ ing.percent_estimate|floatformat:"0" }}%, 
+{% endfor %}
+</p>
 {% endblock %}
 {% block content %}
         {% include "drink/product.html" %}
