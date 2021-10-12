@@ -4,11 +4,17 @@ from django.contrib import admin
 from django.db import models
 
 from django.core.files import File
+from django.core.files.temp import NamedTemporaryFile
+
 
 # Create your models here.
 from django.contrib.auth.models import User
 # Create your models here.
 from jsonfield import JSONField
+
+import requests
+import re
+import urllib
 
 
 
@@ -25,8 +31,8 @@ except ImportError:
 
 class Drink(models.Model):
     
-    name = models.CharField(max_length=40)
-    ean13 = models.CharField(max_length=40,default="")
+    ean13 = models.CharField(max_length=40,blank=True)
+    name = models.CharField(max_length=40,blank=True)
     photo = models.ImageField(upload_to='uploads/',default="uploads/canette.jpg")
     description = JSONField(null=True,blank=True,)
 
@@ -38,8 +44,46 @@ class Drink(models.Model):
             return None
         return self.stock_set.latest('date')
 
+    def getopenfoodfacts(self):
+        if self.ean13:
+            url='http://fr.openfoodfacts.org/api/v0/product/%s.json' % self.ean13
+            #print(url)
+            response = requests.get(url)
+            product = response.json()
+            drink_name = re.sub(r'\s+','_',product['product']['product_name_fr'])
+            resultat = { 
+                "nom":          product['product']['product_name_fr'],
+                "quantite":     product['product']['quantity'],
+                "ingredient":   product['product']['ingredients'],
+                "nutriscore": { 
+                        "grade":        product['product']['nutriscore_grade'],
+                        "data":         product['product']['nutriscore_data'],
+                        "image_url":    'https://static.openfoodfacts.org/images/misc/nutriscore-%s.svg' % product['product']['nutriscore_grade']
+                }
+            }
+            drink_image_url = product['product']['selected_images']['front']['display']['fr']
+            img_temp = NamedTemporaryFile(delete=True)
+            img_temp.write(urllib.request.urlopen(drink_image_url).read())
+            img_temp.flush()
+            
+            self.name = drink_name
+            self.description = resultat
+            self.photo.save('%s.jpg' % drink_name, File(img_temp))
+            #self.photo = File(img_temp)
+            #self.photo = File(urllib.request.urlopen(drink_image_url).read())
+            #self.photo.save('%s.jpg' % self.name, File(urllib2.urlopen('%s' % myimage )))
+
+
+        else:
+            resultat = { }
+        # Doc
+        # https://static.openfoodfacts.org/images/misc/nutriscore-a.svg
+
+
+
     def save(self, *args, **kwargs):
         # do_something()
+        #self.getopenfoodfacts()
         super().save(*args, **kwargs)  # Call the "real" save() method.
         # do_something_else()
 

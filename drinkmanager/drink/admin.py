@@ -12,6 +12,15 @@ class ConsumptionAdmin(admin.ModelAdmin):
     search_fields = ('user__username','drink__name')
 
 
+@admin.action(description='Get info from openfoodfacts')
+def get_openfoodfacts(modeladmin, request, queryset):
+    for drink in queryset.all():
+        drink.getopenfoodfacts()
+
+class DrinkAdmin(admin.ModelAdmin):
+    list_display = ['name', 'ean13']
+    ordering = ['name']
+    actions = [get_openfoodfacts]
 
 
 
@@ -23,8 +32,7 @@ class ConsumptionAdmin(admin.ModelAdmin):
 
 
 
-
-admin.site.register(Drink)
+admin.site.register(Drink, DrinkAdmin)
 admin.site.register(Stock)
 admin.site.register(Consumption, ConsumptionAdmin)
 
