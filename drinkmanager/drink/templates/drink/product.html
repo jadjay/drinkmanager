@@ -12,7 +12,7 @@
           </a>
 </p>
 <p>
-          <img height=50px src="{{ drink.description.nutriscore.image_url }}" />
+          <img height=50px src="{% static drink.description.nutriscore.image_url %}" />
 </p>
 <p>
           <a href="{% url 'drink-stock' drink.name %}">
