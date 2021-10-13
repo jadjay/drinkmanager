@@ -23,21 +23,30 @@ def prints(request):
 
 @login_required
 def take(request, drink_name):
+
     if request.user.is_authenticated():
         now,onehour = datetime.now(),timedelta(hours=1)
-        cookie = "%s" % (now).strftime("%c")
-        defaulttime = (now-onehour).strftime("%c")
-        getcookie = request.session.get(drink_name, default=defaulttime)
-        lasttaketime = datetime.strptime(getcookie,"%c")
+        onehourago = now-onehour
 
-        if lasttaketime > now-onehour :
+        cookie = {
+		"name": "drinkmanager_%s" % drink_name,
+		"value": "%s" % (now).strftime("%c")
+	}
+
+	cookieval = request.COOKIES.get(cookie['name']) if request.COOKIES.get(cookie['name']) else (now-onehour-onehour).strftime("%c")
+        lasttaketime = datetime.strptime('%s' % cookieval,"%c")
+
+        if lasttaketime > onehourago :
             return tosoon(request,drink_name,lasttaketime)
 
-        request.session[drink_name] = cookie
+	#session.set_cookie('%s' % cookie['name'], '%s' % cookie['value'])
+
 
         drink = Drink.objects.get(name=drink_name)
         context = { 'drink': drink }
-        return render(request, 'drink/sure.html', context)
+	html = render(request, 'drink/sure.html', context)
+	html.set_cookie('%s' % cookie['name'], '%s' % cookie['value'])
+        return html
     else:
         return redirect('auth_login')
 
