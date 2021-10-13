@@ -73,21 +73,13 @@ sed 's/^\s\+//' > Dockerfile <<EOF
     WORKDIR /code
     ADD . /code
     
-    RUN apt-get update
-    RUN apt-get install apt-utils
-    RUN apt-get install gettext-base
+    RUN apt update
+    RUN apt install pipenv git apt-utils gettext-base
+    RUN pipenv sync
     
-    RUN pip3 install -r requirements.txt
-    
-EOF
-sed 's/^\s\+//' > requirements.txt <<EOF
-    Django
-    django-registration
-    django-qrcode
-    jsonfield
-    Pillow
 EOF
 git clone https://github.com/jadjay/drinkmanager.git
+cd drinkmanager/drinkmanager/
 sed 's/^\s{4}//' > docker-compose.yml <<EOF
     web:
       build: .
@@ -115,14 +107,15 @@ sed 's/^\s\+//' > execution_file.sh <<EOF
       cd drinkmanager/drinkmanager/
 
       cat drinkmanager/default_settings.py | envsubst > drinkmanager/settings.py
-      cat drinkmanager/settings.py
 
-      python manage.py makemigrations
-      python manage.py migrate
+      #cat drinkmanager/settings.py
 
-      python manage.py createsuperuser --noinput
+      pipenv exec manage.py makemigrations
+      pipenv exec manage.py migrate
 
-      python manage.py runserver 0.0.0.0:8001
+      pipenv exec manage.py createsuperuser --noinput
+
+      pipenv exec manage.py runserver 0.0.0.0:8001
       
 EOF
 chmod a+x execution_file.sh
