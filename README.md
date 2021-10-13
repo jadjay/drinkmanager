@@ -124,18 +124,17 @@ sed 's/^\s\+//' > execution_file.sh <<EOF
       export DJANGO_EMAIL_HOST_PASSWORD="''"
       export DJANGO_EMAIL_USE_TLS=True
 
-      cd drinkmanager/drinkmanager/
 
       cat drinkmanager/default_settings.py | envsubst > drinkmanager/settings.py
 
       #cat drinkmanager/settings.py
 
-      pipenv exec manage.py makemigrations
-      pipenv exec manage.py migrate
+      python manage.py makemigrations
+      python manage.py migrate
 
-      pipenv exec manage.py createsuperuser --noinput
+      python manage.py createsuperuser --noinput
 
-      pipenv exec manage.py runserver 0.0.0.0:8001
+      python manage.py runserver 0.0.0.0:8001
       
 EOF
 chmod a+x execution_file.sh
