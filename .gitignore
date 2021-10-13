@@ -1,4 +1,3 @@
-Pipfile.lock
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -49,6 +48,7 @@ coverage.xml
 *.log
 *.sqlite3
 settings.py
+settings_*.py
 
 # Sphinx documentation
 docs/_build/
@@ -56,5 +56,11 @@ docs/_build/
 # PyBuilder
 target/
 
-drinkmanager/uploads/
-drinkmanager/static/admin
+drinkmanager/drinkmanager/static/admin/
+drinkmanager/qrcode/
+
+Pipfile.lock
+
+uploads
+
+token*
