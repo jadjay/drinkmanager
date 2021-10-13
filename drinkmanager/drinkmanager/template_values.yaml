@@ -1,0 +1,15 @@
+
+#secure_key: 
+#debug: True
+#allowed_hosts:
+databases:
+    name: db.xxENVIRONNEMENTxx.sqlite3
+    # remplacez xxENVIRONNEMENTxx par dev, prod, preprod etc...
+    engine: django.db.backends.sqlite3
+
+email:
+  #host:
+  #port:
+  #user:
+  #password:
+  #tls:
