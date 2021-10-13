@@ -57,3 +57,7 @@ target/
 
 drinkmanager/drinkmanager/static/admin/
 drinkmanager/qrcode/
+
+Pipfile.lock
+
+uploads
