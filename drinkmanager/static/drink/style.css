@@ -33,8 +33,13 @@ h1 {
 }
 
 .qr {
+	display: inline-block;
 	width: 150px;
 	height: 150px;
+}
+.qr img {
+    max-width: 100%;
+    max-height: 100%;
 }
 .photo {
 	width: 150px;
