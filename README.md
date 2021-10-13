@@ -63,6 +63,8 @@ Copiez ce code et collez le dans un terminal d'un serveur Docker :
 ```shell
 mkdir drinkmanager
 cd drinkmanager
+git clone https://github.com/jadjay/drinkmanager.git
+cd drinkmanager/drinkmanager/
 sed 's/^\s\+//' > Dockerfile <<EOF
     FROM python:3
     MAINTAINER javond@adista.fr
@@ -73,13 +75,15 @@ sed 's/^\s\+//' > Dockerfile <<EOF
     WORKDIR /code
     ADD . /code
     
-    RUN apt update
-    RUN apt install pipenv git apt-utils gettext-base
-    RUN pipenv sync
-    
+
+    RUN apt-get update
+    RUN apt-get install -y python3-pip python3-urllib3 gettext-base apt-utils
+    #python3 python3-pip pipenv git
+    #RUN pipenv --three sync
+    RUN python -m pip install --upgrade pip
+    RUN pip install -r requirements.txt
+
 EOF
-git clone https://github.com/jadjay/drinkmanager.git
-cd drinkmanager/drinkmanager/
 sed 's/^\s{4}//' > docker-compose.yml <<EOF
     web:
       build: .
@@ -89,6 +93,22 @@ sed 's/^\s{4}//' > docker-compose.yml <<EOF
       ports:
         - "8001:8001"
 EOF
+sed 's/^\s{4}//' > requirements.txt <<EOF
+    Django
+    django-extensions
+    django-hvad
+    django-qrcode
+    django-registration
+    j2cli
+    Jinja2
+    jsonfield
+    MarkupSafe
+    Pillow
+    pip
+    PyYAML
+    requests
+EOF
+
 sed 's/^\s\+//' > execution_file.sh <<EOF
       #!/bin/bash
       
