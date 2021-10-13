@@ -22,10 +22,12 @@
           </a>
 </p>
 <p>
+	<div class="qr">
           <a href="{% url 'drink-take' drink.name %}">
           {% url 'drink-take' drink.name as myurl %}
-          {% qr_from_text baseurl|add:myurl myclass="qr" %}
+          {% qr_from_text baseurl|add:myurl %}
           </a>
+	</div>
 </p>
 </div>
 {% comment %}
