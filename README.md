@@ -58,6 +58,9 @@ $ DJANGO_SETTINGS_MODULE=drinkmanager.settings_dev ./manage.py help runserver
 
 ### Installation, tests
 
+[Installer docker](https://docs.docker.com/get-docker/)
+[Installer git](https://git-scm.com/book/fr/v2/D%C3%A9marrage-rapide-Installation-de-Git)
+
 Copiez ce code et collez le dans un terminal d'un serveur Docker :
 
 ```shell
