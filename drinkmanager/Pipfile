@@ -12,6 +12,11 @@ Pillow = "*"
 django = "*"
 ipython = "*"
 requests = "*"
+j2cli = "*"
+Jinja2 = "*"
+MarkupSafe = "*"
+PyYAML = "*"
+
 
 [dev-packages]
 
