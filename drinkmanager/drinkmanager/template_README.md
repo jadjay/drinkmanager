@@ -1,6 +1,11 @@
 # Création des environnements d'executions
 
-1. Editer le fichier [template_values.yaml](template_values.yaml)
+1. Copier le fichier [template_values.yaml](template_values.yaml) 
+```shell
+user@home drinkmanager/ $ cp template_values.yaml /tmp/xxENVIRONNEMENTxx.yaml
+```
+> remplacez xxENVIRONNEMENTxx par dev, prod, preprod etc...
+1. Editer le fichier 
 ```yaml
 
 #secure_key: 
@@ -23,7 +28,7 @@ email:
 2. Lancez la commande suivante 
 
 ```shell
-user@home drinkmanager/ $ j2 template_settings.py.j2 template_values.yaml > drinkmanager/settings_xxENVIRONNEMENTxx.py
+user@home drinkmanager/ $ j2 template_settings.py.j2 /tmp/xxENVIRONNEMENTxx.yaml > drinkmanager/settings_xxENVIRONNEMENTxx.py
 ```
 > remplacez xxENVIRONNEMENTxx par dev, prod, preprod etc...
 
