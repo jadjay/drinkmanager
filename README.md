@@ -1,10 +1,58 @@
 # drinkmanager
 
-## Installation
+## Installation à la mano
+
 ```bash
-$ git clone ...
-$ mv 
+$ sudo apt install pipenv git 
+$ git clone https://github.com/jadjay/drinkmanager.git
+$ cd drinkmanager/drinkmanager/
+$ pipenv sync
+$ pipenv shell
 ```
+
+On génère la configuration de developpement (cf drinkmanager/template_values.yaml)
+
+```shell
+$ cat > /tmp/dm_dev.yaml <<EOF
+
+secure_key: Ahveuy1MahlahqueithohbeePhazieXa
+# utilisez la commande `pwgen 32` par exemple 
+debug: True
+#allowed_hosts:
+databases:
+    name: db.dm_dev.sqlite3
+    engine: django.db.backends.sqlite3
+
+email:
+  host: "smtp.cheztoi.fr"
+  port: 587
+  user: 'LUsurier'
+  password: 'Soyez ma muse'
+  tls: True
+
+EOF
+$ j2 template_settings.py.j2 /tmp/dm_dev.yaml > drinkmanager/settings_dev.py
+
+```
+
+On lance les commandes suivantes :
+
+```shell
+$ DJANGO_SETTINGS_MODULE=drinkmanager.settings_dev ./manage.py runserver
+```
+> Troubleshoot : Il peut arriver qu'un message d'erreur vous demande de faire les migrations au préalable
+
+```shell
+$ DJANGO_SETTINGS_MODULE=drinkmanager.settings_dev ./manage.py migrate
+$ DJANGO_SETTINGS_MODULE=drinkmanager.settings_dev ./manage.py runserver
+```
+
+Pour vous familiariser avec la commande manage :
+```shell
+$ DJANGO_SETTINGS_MODULE=drinkmanager.settings_dev ./manage.py help
+$ DJANGO_SETTINGS_MODULE=drinkmanager.settings_dev ./manage.py help runserver
+```
+
 
 ## Docker
 
