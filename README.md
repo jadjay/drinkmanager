@@ -1,9 +1,13 @@
 # drinkmanager
 
 ## Installation
-```bash
-$ git clone ...
-$ mv 
+
+
+```shell
+$ sudo apt install 
+$ git clone 
+$  
+$ DJANGO_SETTINGS_MODULE=drinkmanager.settings_adista_preprod python2.7 manage.py flush
 ```
 
 ## Docker
