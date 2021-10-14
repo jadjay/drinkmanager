@@ -5,7 +5,11 @@
           <img class="photo" src="{% static drink.photo.url %}"/>
 </p>
 <p>
-            {{ drink.name }}
+            {{ drink.description.nom }}
+            {{ drink.description.quantite }}
+</p>
+<p>
+          <img height=50px src="{% static drink.description.nutriscore.image_url %}" />
 </p>
 <p>
           {% url 'drink-take' drink.name as myurl %}
