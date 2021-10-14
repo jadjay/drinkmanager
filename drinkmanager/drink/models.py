@@ -78,6 +78,7 @@ class Drink(models.Model):
             else:
                 self.name = "Fiche incomplete sur OpenFF"
                 self.description = { "status": "Unknown",
+                                     "elements_manquants": [],
                                      "comment": "Merci de compléter la fiche",
                                      "url": "https://fr.openfoodfacts.org/produit/%s" % self.ean13 }
 
