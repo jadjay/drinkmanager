@@ -190,3 +190,37 @@ $ DJANGO_SETTINGS_MODULE=drinkmanager.settings_dev ./manage.py help runserver
 10. Retournez sur le site web
 
 Votre drinkmanager est prêt, il ne vous reste plus qu'à aller sur la page d'impression et imprimer avec votre navigateur.
+
+
+# TODO
+
+- gérer un USER dans le docker
+
+Dockerfile: 
+```Dockerfile
+
+FROM python:3
+MAINTAINER truc@bidule.fr
+
+ENV PYTHONUNBUFFERED 1
+
+RUN useradd -m -d /code -u 1000 -g 1000 jeannot_lapin
+WORKDIR /code
+ADD . /code
+
+USER jeannot_lapin
+```
+
+docker-compose.yml: 
+```yaml
+    web:
+      build: .
+      command: ./execution_file.sh
+      user: "1000:1000"
+      volumes:
+        - .:/code
+      ports:
+        - "8001:8001"
+
+```
+
