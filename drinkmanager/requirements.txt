@@ -1,6 +1,13 @@
-django
-django-registration
+Django
+django-extensions
+django-hvad
 django-qrcode
+django-registration
+j2cli
+Jinja2
 jsonfield
+MarkupSafe
 Pillow
-#jpeg
+pip
+PyYAML
+requests
