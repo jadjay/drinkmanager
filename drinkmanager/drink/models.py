@@ -51,28 +51,36 @@ class Drink(models.Model):
             response = requests.get(url)
             product = response.json()
 
-            drink_name = re.sub(r'\s+','_',product['product']['product_name_fr'])
-            resultat = { 
-                "nom":          product['product']['product_name_fr'],
-                "quantite":     product['product']['quantity'],
-                "ingredient":   product['product']['ingredients'],
-                "nutriscore": { 
-                        "grade":        product['product']['nutriscore_grade'],
-                        "data":         product['product']['nutriscore_data'],
-                        "image_url":    'images/nutriscore-%s.svg' % product['product']['nutriscore_grade']
+            if ('product_name_fr','quantity','ingredients','nutriscore_grade','nutriscore_data') in product['product'].keys():
+                drink_name = re.sub(r'\s+','_',product['product']['product_name_fr'])
+                resultat = { 
+                    "nom":          product['product']['product_name_fr'],
+                    "quantite":     product['product']['quantity'],
+                    "ingredient":   product['product']['ingredients'],
+                    "nutriscore": { 
+                            "grade":        product['product']['nutriscore_grade'],
+                            "data":         product['product']['nutriscore_data'],
+                            "image_url":    'images/nutriscore-%s.svg' % product['product']['nutriscore_grade']
+                    }
                 }
-            }
-            drink_image_url = product['product']['selected_images']['front']['display']['fr']
-            img_temp = NamedTemporaryFile(delete=True)
-            img_temp.write(urllib.request.urlopen(drink_image_url).read())
-            img_temp.flush()
-            
-            self.name = drink_name
-            self.description = resultat
-            self.photo.save('%s.jpg' % drink_name, File(img_temp))
-            #self.photo = File(img_temp)
-            #self.photo = File(urllib.request.urlopen(drink_image_url).read())
-            #self.photo.save('%s.jpg' % self.name, File(urllib2.urlopen('%s' % myimage )))
+                self.name = drink_name
+                self.description = resultat
+                if ('fr') in product['product']['selected_images']['front']['display'].keys():
+                    drink_image_url = product['product']['selected_images']['front']['display']['fr']
+                    
+                    img_temp = NamedTemporaryFile(delete=True)
+                    img_temp.write(urllib.request.urlopen(drink_image_url).read())
+                    img_temp.flush()
+                    
+                    self.photo.save('%s.jpg' % drink_name, File(img_temp))
+                else:
+                    self.save()
+            else:
+                self.name = "Fiche incomplete sur OpenFF"
+                self.description = { "comment": "Merci de compléter la fiche",
+                                     "url": "https://fr.openfoodfacts.org/produit/%s" % self.ean13 }
+                self.save()
+
 
 
         else:
