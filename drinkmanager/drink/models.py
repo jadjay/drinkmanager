@@ -77,8 +77,14 @@ class Drink(models.Model):
                     self.save()
             else:
                 self.name = "Fiche incomplete sur OpenFF"
-                self.description = { "comment": "Merci de compléter la fiche",
+                self.description = { "status": "Unknown",
+                                     "comment": "Merci de compléter la fiche",
                                      "url": "https://fr.openfoodfacts.org/produit/%s" % self.ean13 }
+
+                for elem in ('product_name_fr','quantity','ingredients','nutriscore_grade','nutriscore_data'):
+                    if not elem in product['product'].keys():
+                        self.description['elements_manquants'].append(elem)
+
                 self.save()
 
 
