@@ -48,6 +48,7 @@ coverage.xml
 *.log
 *.sqlite3
 settings.py
+settings_*.py
 
 # Sphinx documentation
 docs/_build/
