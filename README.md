@@ -11,6 +11,7 @@ Copiez ce code et collez le dans un terminal d'un serveur Docker :
 
 ```shell
 git clone https://github.com/jadjay/drinkmanager.git
+cd drinkmanager
 ```
 
 ⚠️ Modifiez le fichier ```execution_file.sh``` ⚠️
