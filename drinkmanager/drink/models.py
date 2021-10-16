@@ -126,7 +126,9 @@ class Consumption(models.Model):
     def getuser(self):
         return self.user
 
-##  class ConsumptionAdmin(admin.ModelAdmin):
-##      list_display = ('date','drink','user')
-##  #    list_filter = ('user__username', 'drink__name')
-##  #    search_fields = ('user__username','drink__name')
+    # Display admin 
+    def la_conso(obj):
+        return ("%s---%s---%s" % (obj.date.strftime('%Y-%m-%d_%H:%M'),obj.user, obj.drink)).lower()
+
+    la_conso.admin_order_field = 'date'
+    la_conso.short_description = 'Ticket Consommation'
