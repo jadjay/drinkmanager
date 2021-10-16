@@ -46,54 +46,91 @@ class Drink(models.Model):
 
     def getopenfoodfacts(self):
         if self.ean13:
+
+            # API OpenFoodFacts -> code produit
             url='http://fr.openfoodfacts.org/api/v0/product/%s.json' % self.ean13
             #print(url)
+
+            # On récupère la partie product du json d'off
             response = requests.get(url)
-            product = response.json()
+            off_infos = response.json()['product']
 
-            if ('product_name_fr','quantity','ingredients','nutriscore_grade','nutriscore_data') in product['product'].keys():
-                drink_name = re.sub(r'\s+','_',product['product']['product_name_fr'])
-                resultat = { 
-                    "nom":          product['product']['product_name_fr'],
-                    "quantite":     product['product']['quantity'],
-                    "ingredient":   product['product']['ingredients'],
-                    "nutriscore": { 
-                            "grade":        product['product']['nutriscore_grade'],
-                            "data":         product['product']['nutriscore_data'],
-                            "image_url":    'images/nutriscore-%s.svg' % product['product']['nutriscore_grade']
-                    }
-                }
-                self.name = drink_name
-                self.description = resultat
-                if ('fr') in product['product']['selected_images']['front']['display'].keys():
-                    drink_image_url = product['product']['selected_images']['front']['display']['fr']
-                    
-                    img_temp = NamedTemporaryFile(delete=True)
-                    img_temp.write(urllib.request.urlopen(drink_image_url).read())
-                    img_temp.flush()
-                    
-                    self.photo.save('%s.jpg' % drink_name, File(img_temp))
+            # On ajoute que ce qui nous intéresse dans resultat
+            resultat = {}
+            for infok,infov in off_infos.items():
+                if infok in ('product_name_fr','quantity','selected_images','ingredients','nutriscore_grade','nutriscore_data'):
+                    resultat[infok] = infov
                 else:
-                    self.save()
+                    resultat[infok] = 'unknown'
+            # On défini l'image nutriscore
+            # Doc
+            # https://static.openfoodfacts.org/images/misc/nutriscore-a.svg
+            resutat['nutriscore_image_url'] = 'images/nutriscore-%s.svg' % resultat['nutriscore_grade'] 
+
+            
+            # On tente de récupérer 
+            try:
+                product_image = urllib.request.urlopen(resultat['selected_images']['front']['display']['fr'])
+            except Exception as e:
+                print(e)
+                product_image = urllib.request.urlopen(resultat['selected_images']['front']['display']['en'])
+            #except Exception as e:
+            #    print(e)
             else:
-                self.name = "Fiche incomplete sur OpenFF"
-                self.description = { "status": "Unknown",
-                                     "elements_manquants": [],
-                                     "comment": "Merci de compléter la fiche",
-                                     "url": "https://fr.openfoodfacts.org/produit/%s" % self.ean13 }
+                product_image = '/images/shrugg.jpg'
+                
+            self.photo.save('%s.jpg' % drink_name, File(product_image.read()),save=False)
+            self.name = re.sub(r'\s+','_', resultat['product_name_fr']
+            self.description = resultat
 
-                for elem in ('product_name_fr','quantity','ingredients','nutriscore_grade','nutriscore_data'):
-                    if not elem in product['product'].keys():
-                        self.description['elements_manquants'].append(elem)
-
-                self.save()
-
-
+            self.save()
 
         else:
-            resultat = { }
-        # Doc
-        # https://static.openfoodfacts.org/images/misc/nutriscore-a.svg
+            self.name = "Fiche incomplete sur OpenFF"
+
+            self.save()
+
+            #if ('product_name_fr','quantity','ingredients','nutriscore_grade','nutriscore_data') in product['product'].keys():
+            #    drink_name = re.sub(r'\s+','_',product['product']['product_name_fr'])
+            #    resultat = { 
+            #        "nom":          product['product']['product_name_fr'],
+            #        "quantite":     product['product']['quantity'],
+            #        "ingredient":   product['product']['ingredients'],
+            #        "nutriscore": { 
+            #                "grade":        product['product']['nutriscore_grade'],
+            #                "data":         product['product']['nutriscore_data'],
+            #                "image_url":    'images/nutriscore-%s.svg' % product['product']['nutriscore_grade']
+            #        }
+            #    }
+            #    self.name = drink_name
+            #    self.description = resultat
+            #    if ('fr') in product['product']['selected_images']['front']['display'].keys():
+            #        drink_image_url = product['product']['selected_images']['front']['display']['fr']
+            #        
+            #        img_temp = NamedTemporaryFile(delete=True)
+            #        img_temp.write(urllib.request.urlopen(drink_image_url).read())
+            #        img_temp.flush()
+            #        
+            #        self.photo.save('%s.jpg' % drink_name, File(img_temp))
+            #    else:
+            #        self.save()
+            #else:
+            #    self.name = "Fiche incomplete sur OpenFF"
+            #    self.description = { "status": "Unknown",
+            #                         "elements_manquants": [],
+            #                         "comment": "Merci de compléter la fiche",
+            #                         "url": "https://fr.openfoodfacts.org/produit/%s" % self.ean13 }
+
+            #    for elem in ('product_name_fr','quantity','ingredients','nutriscore_grade','nutriscore_data'):
+            #        if not elem in product['product'].keys():
+            #            self.description['elements_manquants'].append(elem)
+
+            #    self.save()
+
+
+
+        #else:
+        #    resultat = { }
 
 
 
