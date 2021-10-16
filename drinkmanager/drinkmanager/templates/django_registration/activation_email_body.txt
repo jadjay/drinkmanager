@@ -1,5 +1,7 @@
 Bonjour,
 
+email_body_txt
+
 Pour finaliser l'activation de votre compte merci de cliquer ici :
 
 http://{{ site.domain }}{% url 'django_registration_activate' activation_key %}

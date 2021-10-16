@@ -1,0 +1,11 @@
+<p>Bonjour {{ user.user.name }},</p>
+
+<p>Ta consommation à l'heure actuelle est de {{ user.nb }} boisson{{ user.nb |pluralize }}.</p>
+
+<p>Si tu souhaites payer et "effacer" cette ardoise, saches que tu dois {{ user.euro|floatformat:2 }} € à la caisse des boissons.</p>
+
+<p>En te remerciant pour ton attention,</p>
+
+<p>Cordialement,</p>
+
+<p>Les admins de drinkmanager.</p>

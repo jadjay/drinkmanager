@@ -1,0 +1,13 @@
+{% extends "skeleton.html" %}
+{% load static %}
+
+{% block header %}
+<h1>Validation par mail</h1>
+{% endblock %}
+{% block content %}
+<p> Quelque chose s'est mal passé :'(
+<p>
+{{ activation_error }}
+</p>
+{% endblock %}
+
