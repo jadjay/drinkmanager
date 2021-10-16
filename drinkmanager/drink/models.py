@@ -29,12 +29,29 @@ try:
 except ImportError:
     import cStringIO
 
+from django.core.exceptions import ValidationError
+from django.utils.translation import gettext_lazy as _
+
+def validate_openff(description):
+
+    problemes = [
+                'nom',
+                'quantite',
+                'ingredient',
+                'nutriscore_grade',
+                ]
+
+    for probleme in problemes:
+        if probleme not in description.keys():
+            raise ValidationError( _("%(probleme)s n'est pas défini" ), params={'probleme': probleme},)
+
+
 class Drink(models.Model):
     
     ean13 = models.CharField(max_length=40,blank=True)
     name = models.CharField(max_length=40,blank=True)
     photo = models.ImageField(upload_to='uploads/',default="uploads/canette.jpg")
-    description = JSONField(null=True,blank=True,)
+    description = JSONField(null=True,blank=True,validators=[validate_openff])
 
     def __str__(self):
         return "%s" % self.name
