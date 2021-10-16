@@ -24,13 +24,16 @@
 }
 .ingredient {
 	font-size: 9px;
-	margin: auto;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
 	column-count: 1;
 	column-rule: 1px solid lightblue;
-	width: 200px;
+	width: 50%;
 }
 .product {
-	overflow: hidden;
+/*	overflow: hidden;
+*/
 	display: inline-block;
 	height:auto;
 }
@@ -40,7 +43,8 @@
 	height: 150px;
 }
 .photo {
-	width: 150px;
+/*	width: 150px;
+*/
 	height: 150px;
 }
 
