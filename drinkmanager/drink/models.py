@@ -80,7 +80,7 @@ class Drink(models.Model):
                 product_image = '/images/shrugg.jpg'
                 
             self.photo.save('%s.jpg' % drink_name, File(product_image.read()),save=False)
-            self.name = re.sub(r'\s+','_', resultat['product_name_fr']
+            self.name = re.sub(r'\s+','_', resultat['product_name_fr'])
             self.description = resultat
 
             self.save()
