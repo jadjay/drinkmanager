@@ -154,3 +154,8 @@ docker-compose.yml:
 
 ```
 
+# To do
+
+[ ] Ajouter la liste des consommations dans le mail
+[ ] Gérer un utilisateur hors root dans le Dockerfile et docker-compose
+
