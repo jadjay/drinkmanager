@@ -8,11 +8,14 @@
 </p>
 <p>
           <a href="{% url 'drink-show' drink.name %}">
-            {{ drink.description.nom }}
+            {{ drink.description.product_name_fr }}
           </a>
+	  </p>
+	  <p>
+	    {{ drink.description.quantity }}
 </p>
 <p>
-          <img height=50px src="{% static drink.description.nutriscore.image_url %}" />
+          <img height=50px src="{% static drink.description.nutriscore_image_url %}" />
 </p>
 <p>
           <a href="{% url 'drink-stock' drink.name %}">
