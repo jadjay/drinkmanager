@@ -11,3 +11,5 @@ Pillow
 pip
 PyYAML
 requests
+ipython
+unidecode
