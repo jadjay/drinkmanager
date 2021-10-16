@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from django.contrib import auth
 from django.urls import path, include
 from . import views
 from drink import views as dviews
@@ -25,5 +26,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('django_registration.backends.activation.urls')),
     url(r'^accounts/', include('django.contrib.auth.urls')),
-#    url(r'^accounts/login/', auth.views.login, name='login'),
+    url(r'^accounts/login/', auth.views.auth_login, name='login'),
+    url(r'^accounts/logout/', auth.views.auth_logout, name='logout'),
+#    url(r'logout/$', auth.views.auth_logout, name='logout'),
 ]

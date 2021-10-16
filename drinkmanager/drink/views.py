@@ -24,7 +24,10 @@ def prints(request):
 
 @login_required
 def take(request, drink_name):
-    if request.user.is_authenticated():
+    print(request)
+    print(request.user)
+    print(request.user.is_authenticated)
+    if request.user.is_authenticated:
         now,onehour = datetime.now(),timedelta(hours=1)
         cookie = "%s" % (now).strftime("%c")
         defaulttime = (now-onehour).strftime("%c")
