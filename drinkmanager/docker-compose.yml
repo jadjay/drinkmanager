@@ -1,0 +1,8 @@
+    web:
+      build: .
+      command: ./execution_file.sh
+      user: "${UID}:${GID}"
+      volumes:
+        - .:/code
+      ports:
+        - "8001:8001"
