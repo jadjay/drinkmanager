@@ -109,22 +109,31 @@ class Drink(models.Model):
             
             # On tente de récupérer l'image du produit
             try:
-                product_image = urllib.request.urlopen(resultat['selected_images']['front']['display']['fr'])
+                if 'fr' in resultat['selected_images']['front']['display'].keys():
+                    product_image_url = resultat['selected_images']['front']['display']['fr']
+                elif 'en' in resultat['selected_images']['front']['display'].keys():
+                    product_image_url = resultat['selected_images']['front']['display']['en']
+                else:
+                    product_image_url = 'https://media.istockphoto.com/photos/senior-man-shrugging-shoulders-picture-id91520053?k=20&m=91520053&s=612x612&w=0&h=W8iwQM7C7hFrF9Z2aY3g0Or1ewB9Mb_uALyiI0DBbtQ='
+
+                product_image = urllib.request.urlopen(product_image_url)
+
             except Exception as e:
                 print(e)
-                product_image = urllib.request.urlopen('https://media.istockphoto.com/photos/senior-man-shrugging-shoulders-picture-id91520053?k=20&m=91520053&s=612x612&w=0&h=W8iwQM7C7hFrF9Z2aY3g0Or1ewB9Mb_uALyiI0DBbtQ=')
-            #    product_image = urllib.request.urlopen(resultat['selected_images']['front']['display']['en'])
-            ##except Exception as e:
-            ##    print(e)
-            #else:
-                #product_image = open('static/images/shrugg.jpg')
-                #product_image = urllib.request.urlopen('/images/shrugg.jpg')
+                product_image_url = 'https://media.istockphoto.com/photos/senior-man-shrugging-shoulders-picture-id91520053?k=20&m=91520053&s=612x612&w=0&h=W8iwQM7C7hFrF9Z2aY3g0Or1ewB9Mb_uALyiI0DBbtQ='
 
-                
-            #self.name = unidecode.unidecode(re.sub(r'\s+','_', resultat['product_name_fr']))
-            self.name = re.sub(r'\s+','_', resultat['product_name_fr'])
+                product_image = urllib.request.urlopen(product_image_url)
+
+            if 'product_name_fr' in resultat.keys():
+                self.name = re.sub(r'\s+','_', resultat['product_name_fr'])
+            elif 'product_name_en' in resultat.keys():
+                self.name = re.sub(r'\s+','_', resultat['product_name_en'])
+            else:
+                self.name = re.sub(r'\s+','_', resultat['product_name'])
+
             #self.photo.save(u'%s.jpg' % self.name, File(product_image.read()),save=False)
-            self.photo.save(u'%s.jpg' % self.name, product_image,save=False)
+            self.photo.save(u'%s.jpg' % self.name, product_image, save=False)
+
             self.description = resultat
 
             #try:
