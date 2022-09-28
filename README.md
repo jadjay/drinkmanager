@@ -14,7 +14,7 @@ git clone https://github.com/jadjay/drinkmanager.git
 cd drinkmanager
 ```
 
-⚠️ Modifiez le fichier ```execution_file.sh``` ⚠️
+⚠️  Modifiez le fichier ```execution_file.sh``` ⚠️
 
 Vous obtenez :
 ```shell
