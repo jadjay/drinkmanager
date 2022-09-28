@@ -13,20 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url, include
+from django.conf.urls import include
 from django.contrib import admin
 from django.contrib import auth
-from django.urls import path, include
+from django.urls import path, include, re_path
 from . import views
 from drink import views as dviews
 
 urlpatterns = [
-    url(r'^$', dviews.index, name='index'),
-    url(r'^drink/', include('drink.urls')),
-    url(r'^admin/', admin.site.urls),
-    url(r'^accounts/', include('django_registration.backends.activation.urls')),
-    url(r'^accounts/', include('django.contrib.auth.urls')),
-    url(r'^accounts/login/', auth.views.auth_login, name='login'),
-    url(r'^accounts/logout/', auth.views.auth_logout, name='logout'),
-#    url(r'logout/$', auth.views.auth_logout, name='logout'),
+    re_path(r'^$', dviews.index, name='index'),
+    re_path(r'^drink/', include('drink.urls')),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^accounts/', include('django_registration.backends.activation.urls')),
+    re_path(r'^accounts/', include('django.contrib.auth.urls')),
+    re_path(r'^accounts/login/', auth.views.auth_login, name='login'),
+    re_path(r'^accounts/logout/', auth.views.auth_logout, name='logout'),
+#    re_path(r'logout/$', auth.views.auth_logout, name='logout'),
 ]
