@@ -1,4 +1,4 @@
-Django
+Django==3.2
 django-extensions
 django-hvad
 django-qrcode

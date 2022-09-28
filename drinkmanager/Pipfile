@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-Django = "*"
+Django = "3.2"
 django-registration = "*"
 django-qrcode = "*"
 jsonfield = "*"
@@ -16,9 +16,10 @@ j2cli = "*"
 Jinja2 = "*"
 MarkupSafe = "*"
 PyYAML = "*"
+unidecode = "*"
 
 
 [dev-packages]
 
 [requires]
-python_version = "3"
+python_version = "3.10"
