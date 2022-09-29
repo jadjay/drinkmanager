@@ -1,0 +1,27 @@
+version: "3.9"
+services:
+  web:
+    build: .
+      #command: ls -la ./drinkmanager /database
+    command: ./drinkmanager/execution_file.sh
+      #user: "${UID}:${GID}"
+    user: "1000:1000"
+    volumes:
+      - .:/code/drinkmanager
+      - database:/database
+    ports:
+      - "8001:8001"
+    environment:
+      - DJANGO_SUPERUSER_PASSWORD
+      - DJANGO_SUPERUSER_USERNAME
+      - DJANGO_SUPERUSER_EMAIL
+      - DJANGO_DEBUG
+      - DJANGO_EMAIL_HOST
+      - DJANGO_EMAIL_PORT
+      - DJANGO_EMAIL_HOST_USER
+      - DJANGO_EMAIL_HOST_PASSWORD
+      - DJANGO_EMAIL_USE_TLS
+      - DJANGO_PROJECT_NAME
+      - DJANGO_DATABASE_DIR
+volumes:
+  database:

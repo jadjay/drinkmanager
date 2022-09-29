@@ -1,6 +1,6 @@
 from datetime import datetime,timedelta
 from django.shortcuts import render, redirect
-from django.shortcuts import render_to_response
+#from django.shortcuts import render_to_response
 from django.http import HttpResponse
 from .models import Drink, Stock, Consumption
 from django.contrib.auth.decorators import login_required
@@ -29,23 +29,20 @@ def take(request, drink_name):
         onehourago = now-onehour
 
         cookie = {
-		"name": "drinkmanager_%s" % drink_name,
-		"value": "%s" % (now).strftime("%c")
-	}
+            "name": "drinkmanager_%s" % drink_name,
+            "value": "%s" % (now).strftime("%c")
+        }
 
-	cookieval = request.COOKIES.get(cookie['name']) if request.COOKIES.get(cookie['name']) else (now-onehour-onehour).strftime("%c")
-        lasttaketime = datetime.strptime('%s' % cookieval,"%c")
+    cookieval = request.COOKIES.get(cookie['name']) if request.COOKIES.get(cookie['name']) else (now-onehour-onehour).strftime("%c")
+    lasttaketime = datetime.strptime('%s' % cookieval,"%c")
 
-        if lasttaketime > onehourago :
-            return tosoon(request,drink_name,lasttaketime)
-
-	#session.set_cookie('%s' % cookie['name'], '%s' % cookie['value'])
-
+    if lasttaketime > onehourago :
+        return tosoon(request,drink_name,lasttaketime)
 
         drink = Drink.objects.get(name=drink_name)
         context = { 'drink': drink }
-	html = render(request, 'drink/sure.html', context)
-	html.set_cookie('%s' % cookie['name'], '%s' % cookie['value'])
+        html = render(request, 'drink/sure.html', context)
+        html.set_cookie('%s' % cookie['name'], '%s' % cookie['value'])
         return html
     else:
         return redirect('auth_login')
@@ -124,16 +121,16 @@ def tosoon(request, drink_name, lasttaketime):
 
 
 
-def handler404(request, *args, **argv):
-    response = render_to_response('drink/404.html', {},
-                                  context_instance=RequestContext(request))
-    response.status_code = 404
-    return response
-
-
-def handler500(request, *args, **argv):
-    response = render_to_response('drink/500.html', {},
-                                  context_instance=RequestContext(request))
-    response.status_code = 500
-    return response
-
+#def handler404(request, *args, **argv):
+#    response = render_to_response('drink/404.html', {},
+#                                  context_instance=RequestContext(request))
+#    response.status_code = 404
+#    return response
+#
+#
+#def handler500(request, *args, **argv):
+#    response = render_to_response('drink/500.html', {},
+#                                  context_instance=RequestContext(request))
+#    response.status_code = 500
+#    return response
+#

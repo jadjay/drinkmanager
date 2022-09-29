@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = ''
+SECRET_KEY = $DJANGO_SECRETKEY
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = $DJANGO_DEBUG
 
 ALLOWED_HOSTS = []
 
@@ -32,7 +32,7 @@ LOGIN_REDIRECT_URL = '/' #Or whatever you wish
 # Application definition
 
 INSTALLED_APPS = [
-    'registration',
+    'django_registration',
     'qrcode',
     'drink',
     'django.contrib.admin',
@@ -43,19 +43,21 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 ]
+    #'django.contrib.static',
 
-MIDDLEWARE_CLASSES = [
+MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+#    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
 
 ROOT_URLCONF = 'drinkmanager.urls'
+SITE_ID = 1
 
 TEMPLATES = [
     {
@@ -81,7 +83,7 @@ WSGI_APPLICATION = 'drinkmanager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join('/database', 'db.${DJANGO_PROJECT_NAME}.sqlite3'),
     }
 }
 
@@ -127,9 +129,14 @@ STATICFILES_DIRS = [
 ]
 
 # Email
-EMAIL_HOST = "smtp.cheztoi.com"
-EMAIL_PORT = 589
-EMAIL_HOST_USER = ""
-EMAIL_HOST_PASSWORD = ""
-EMAIL_USE_TLS = True
-#EMAIL_USE_SSL
+EMAIL_HOST = $DJANGO_EMAIL_HOST
+EMAIL_PORT = $DJANGO_EMAIL_PORT
+EMAIL_HOST_USER = $DJANGO_EMAIL_HOST_USER
+EMAIL_HOST_PASSWORD = $DJANGO_EMAIL_HOST_PASSWORD
+EMAIL_USE_TLS = $DJANGO_EMAIL_USE_TLS
+
+
+DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'
+TENANT_APPS = [
+        'django.contrib.admin'
+        ]
