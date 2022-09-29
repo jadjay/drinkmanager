@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 from jsonfield import JSONField
 
-import urllib2
+#import urllib2
 
 class Drink(models.Model):
     def __str__(self):
@@ -27,7 +27,7 @@ class Stock(models.Model):
 
     date = models.DateField(u'Date d\'alimentation du stock')
     quantity = models.IntegerField(u'Quantite actuelle')
-    drink = models.ForeignKey(Drink)
+    drink = models.ForeignKey(Drink,on_delete=models.CASCADE)
 
 class Consumption(models.Model):
     def __str__(self):
@@ -35,7 +35,7 @@ class Consumption(models.Model):
 
     date = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    drink = models.ForeignKey(Drink)
+    drink = models.ForeignKey(Drink,on_delete=models.CASCADE)
 
     def getuser(self):
         return self.user
