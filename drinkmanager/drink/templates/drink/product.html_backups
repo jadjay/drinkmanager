@@ -1,0 +1,1 @@
+{% qr_from_text baseurl|add:myurl myclass="qr" %}

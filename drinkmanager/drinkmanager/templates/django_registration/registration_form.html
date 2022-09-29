@@ -1,0 +1,15 @@
+{% extends "skeleton.html" %}
+{% load static %}
+
+{% block header %}
+<h1>Enregistrement</h1>
+{% endblock %}
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+<table>
+	{{ form }}
+</table>
+<input type="submit" value="Submit" />
+</form>
+{% endblock %}

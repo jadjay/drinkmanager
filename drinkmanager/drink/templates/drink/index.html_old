@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 
 <head>
 </head>
@@ -9,5 +9,5 @@
 
 {% endblock %}
 
-<a href="{% url 'registration_register' %}"> S'inscrire </a>
-<a href="{% url 'registration_register' %}"> S'inscrire </a>
+<a href="{% url 'django_registration_register' %}"> S'inscrire </a>
+<a href="{% url 'django_registration_register' %}"> S'inscrire </a>

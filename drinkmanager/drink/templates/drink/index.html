@@ -8,12 +8,3 @@
 	        {% include "drink/product.html" %}
 	{% endfor %}
 {% endblock %}
-{% comment %}
-  <div class="block">
-    <a href="{% url 'drink-take' drink.name %}">
-      <p><img src="{% static drink.photo.url %}"/></p>
-      <p>Solde : {{ drink.lastStock.quantity }}</p>
-      <p>{% qr_from_text "http://jav.6num.fr/drink/take/"|add:drink.name %}</p>
-    </a>
-  </div>
-{% endcomment %}

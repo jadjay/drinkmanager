@@ -1,4 +1,4 @@
-{% load staticfiles %}
+{% load static %}
 {% load qr_tags %}
 <div class="product">
 <p>
@@ -8,8 +8,14 @@
 </p>
 <p>
           <a href="{% url 'drink-show' drink.name %}">
-            {{ drink.name }}
+            {{ drink.description.product_name_fr }}
           </a>
+	  </p>
+	  <p>
+	    {{ drink.description.quantity }}
+</p>
+<p>
+          <img height=50px src="{% static drink.description.nutriscore_image_url %}" />
 </p>
 <p>
           <a href="{% url 'drink-stock' drink.name %}">
@@ -24,28 +30,7 @@
 <p>
           <a href="{% url 'drink-take' drink.name %}">
           {% url 'drink-take' drink.name as myurl %}
-          {% qr_from_text baseurl|add:myurl myclass="qr" %}
+          {% qr_from_text baseurl|add:myurl size="s" %}
           </a>
 </p>
 </div>
-{% comment %}
-    <table>
-      <tr>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        </td>
-      </tr>
-      <tr>
-        <td>
-        </td>
-      </tr>
-    </table>
-{% endcomment %}
-

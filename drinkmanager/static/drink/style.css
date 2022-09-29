@@ -7,20 +7,33 @@
 }
 /*
 	width: 400px;
+	overflow: hidden;
 */
 
 #header {
-	overflow: hidden;
-	height:70px;
+	height:100px;
 	text-align: center;
+}
+#header h1 {
+	margin: 0;
 }
 #content {
 	overflow: hidden;
 	height:auto;
 	text-align: center;
 }
+.ingredient {
+	font-size: 9px;
+	margin-top: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	column-count: 1;
+	column-rule: 1px solid lightblue;
+	width: 50%;
+}
 .product {
-	overflow: hidden;
+/*	overflow: hidden;
+*/
 	display: inline-block;
 	height:auto;
 }
@@ -30,7 +43,8 @@
 	height: 150px;
 }
 .photo {
-	width: 150px;
+/*	width: 150px;
+*/
 	height: 150px;
 }
 
