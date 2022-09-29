@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = $DJANGO_SECRETKEY
+SECRET_KEY = 'loi5tha4bahw8thaquai8Ohngiesheid'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = $DJANGO_DEBUG
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'drinkmanager.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join('/database', 'db.${DJANGO_PROJECT_NAME}.sqlite3'),
+        'NAME': os.path.join(BASE_DIR, 'db.adista_preprod.sqlite3'),
     }
 }
 
@@ -129,11 +129,11 @@ STATICFILES_DIRS = [
 ]
 
 # Email
-EMAIL_HOST = $DJANGO_EMAIL_HOST
-EMAIL_PORT = $DJANGO_EMAIL_PORT
-EMAIL_HOST_USER = $DJANGO_EMAIL_HOST_USER
-EMAIL_HOST_PASSWORD = $DJANGO_EMAIL_HOST_PASSWORD
-EMAIL_USE_TLS = $DJANGO_EMAIL_USE_TLS
+EMAIL_HOST = 'smtp.rachetjay.fr'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'jerome'
+EMAIL_HOST_PASSWORD = 'MaCFLy1801_-'
+EMAIL_USE_TLS = True
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.AutoField'

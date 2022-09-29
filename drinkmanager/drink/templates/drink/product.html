@@ -30,7 +30,7 @@
 <p>
           <a href="{% url 'drink-take' drink.name %}">
           {% url 'drink-take' drink.name as myurl %}
-          {% qr_from_text baseurl|add:myurl size="s" %}
+          {% qr_from_text baseurl|add:myurl %}
           </a>
 </p>
 </div>

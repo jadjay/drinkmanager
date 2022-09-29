@@ -5,6 +5,7 @@
 <div>
 <p>Pour se connecter {{ baseurl|add:myurl }}
 </p>
+{% qr_from_text baseurl|add:myurl %}
 <p>Flasher ce tag
 </p>
 </div>
@@ -12,36 +13,25 @@
 <div class="badge">
 <p>Google Play</p>
 <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/fr-play-badge.png" />
-<<<<<<< HEAD
-<p><a href="https://play.google.com/store/apps/details?id=de.markusfisch.android.binaryeye&hl=fr&gl=US">"Binary Eye" / Google Play</a></p>
-=======
 <p><a href="https://play.google.com/store/apps/details?id=de.markusfisch.android.binaryeye&hl=fr&gl=US">"Binary Eye" / Google Play</a></p> 
->>>>>>> dcd6623aa10564e72940be058473faa7b2d43182
 </div>
 <div class="badge">
 <p>Apple Store Play</p>
 <div style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></div>
-<<<<<<< HEAD
-<p><a href="{{ qrreaderurl }}">"QR Reader" / Apple Store</a></p>
-</div>
-
 {% comment "Get tool" %}
 
-=======
 <p><a href="{{ qrreaderurl }}">"QR Reader" / Apple Store</a></p> 
 </div>
 {% comment "Get tool" %}
->>>>>>> dcd6623aa10564e72940be058473faa7b2d43182
-{% qr_from_text qrdroidurl myclass="qr" %}
+{% qr_from_text qrdroidurl %}
 <div class="badge">
 <p>QRDroïd</p>
 <img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/fr-play-badge.png" />
 </div>
-{% qr_from_text qrreaderurl myclass="qr" %}
+{% qr_from_text qrreaderurl %}
 <div class="badge">
 <p>QR Reader</p>
 <div style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></div>
-=======
 {% qr_from_text baseurl|add:myurl size="s" %}
 </div>
 {% endcomment %}

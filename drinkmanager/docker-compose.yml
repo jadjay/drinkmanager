@@ -3,6 +3,7 @@ services:
   web:
     build: .
       #command: ls -la ./drinkmanager /database
+      #command: sed -n '510,520p' /code/.local/lib/python2.7/site-packages/django/template/base.py
     command: ./drinkmanager/execution_file.sh
       #user: "${UID}:${GID}"
     user: "1000:1000"
