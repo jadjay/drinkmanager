@@ -26,6 +26,17 @@
 
 {% comment "Optional note" %}
 
+</p>
+
+<div class="badge">
+<img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/fr-play-badge.png" />
+<p><a href="https://play.google.com/store/apps/details?id=de.markusfisch.android.binaryeye&hl=fr&gl=US">"Binary Eye" / Google Play</a></p> 
+</div>
+<div class="badge">
+<div style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></div>
+<p><a href="{{ qrreaderurl }}">"QR Reader" / Apple Store</a></p> 
+</div>
+{% comment "Optional note" %}
 <div class="badge">
 <p>QRDroïd</p>
 <a href="https://play.google.com/store/apps/details?id=me.scan.android.client&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/fr-play-badge.png" /></a>
@@ -34,6 +45,8 @@
 <p>QR Reader</p>
 <a href="https://geo.itunes.apple.com/us/app/qr-reader-for-iphone/id368494609?mt=8" style="display:inline-block;overflow:hidden;background:url(https://linkmaker.itunes.apple.com/images/badges/en-us/badge_appstore-lrg.svg) no-repeat;width:165px;height:40px;"></a>
 </div>
+{% endcomment %}
+{% comment "Optional note" %}
 <p>
 <a href='{{ basehost }}{% url 'django_registration_activate' "123abc" %}'>
 {{ basehost }}{% url 'django_registration_activate' "123abc" %}</a>
@@ -44,6 +57,7 @@
 </p>
 http://{{ site.domain }}{% url 'django_registration_activate' "toto" %}
 
+{% comment "Get tool" %}
 <p>QRDroid</p>
 <a href="https://play.google.com/store/apps/details?id=me.scan.android.client&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img alt="Get it on Google Play" src="https://play.google.com/intl/en_us/badges/images/generic/fr-play-badge.png" /></a>
 </div>
