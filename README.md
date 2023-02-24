@@ -160,4 +160,6 @@ docker-compose.yml:
 * [ ] Gérer un utilisateur hors root dans le Dockerfile et docker-compose
 * [ ] Docker-compose + gitlab ci-cd 
   * https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
+  * https://www.digitalocean.com/community/tutorials/how-to-deploy-a-scalable-and-secure-django-application-with-kubernetes-fr
+
 
