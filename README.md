@@ -154,8 +154,10 @@ docker-compose.yml:
 
 ```
 
-# To do
+# TODO
 
-[ ] Ajouter la liste des consommations dans le mail
-[ ] Gérer un utilisateur hors root dans le Dockerfile et docker-compose
+* [ ] Ajouter la liste des consommations dans le mail
+* [ ] Gérer un utilisateur hors root dans le Dockerfile et docker-compose
+* [ ] Docker-compose + gitlab ci-cd 
+  * https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/
 
